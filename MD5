@@ -1,9 +1,9 @@
-f92f1f30ca7ae3796a557e43f5491624 *DESCRIPTION
+8a4377269ffa28e872af8a89971002fb *DESCRIPTION
 46f1f62c410e39c2a640d1a53da6003d *NAMESPACE
 1b9757a254aae89f8132141a589268ff *R/boxcoxnc.R
 da60dfe912df61442cd159d3c14e21f5 *data/grades.rda
 bb3be1762b0f88727599f931b8c78da8 *data/textile.rda
-db4e383102abb8c8f0f2befe41ee7339 *man/AID.Rd
-ef199c815760d7b1f4f6397fa52b1b66 *man/boxcoxnc.Rd
+74be3a29756e360cc9a973639ed14af6 *man/AID.Rd
+f7379d39f73d4dab2e0f3cab1f2043a1 *man/boxcoxnc.Rd
 5384d3e0e16a2df11d75964ffd083e1a *man/grades.Rd
 bbe5644e262fec6cc019bce46e430f62 *man/textile.Rd

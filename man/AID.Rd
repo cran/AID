@@ -12,7 +12,7 @@ Includes a function to estimate the power transformation parameter and some data
 \tabular{ll}{
 Package: \tab AID\cr
 Type: \tab Package\cr
-Version: \tab 1.0\cr
+Version: \tab 1.1\cr
 Date: \tab 2012-05-25\cr
 License: \tab GPL (>=2)\cr
 }
