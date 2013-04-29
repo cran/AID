@@ -1,5 +1,5 @@
 boxcoxnc <-
-function(data,method="all",lam=seq(-2,2,0.01),plotit = TRUE,rep=30)
+function(data,method="all",lam=seq(-2,2,0.01),plotit = TRUE,rep=30,p.method="BY")
 {
 
 
@@ -24,13 +24,11 @@ if (round(lam[i],2)==0) sw<-rbind(sw,c(lam[i],shapiro.test(log(data))$statistic)
 }
 swlam<-sw[which.max(sw[,2]),1]
 data.sw<-((data^swlam)-1)/swlam
-sw.pvalue_data.sw<-shapiro.test(data.sw)$p.value
-ad.pvalue_data.sw<-ad.test(data.sw)$p.value
-cvm.pvalue_data.sw<-cvm.test(data.sw)$p.value
-pt.pvalue_data.sw<-pearson.test(data.sw)$p.value
-sf.pvalue_data.sw<-sf.test(data.sw)$p.value
-lt.pvalue_data.sw<-lillie.test(data.sw)$p.value
-jb.pvalue_data.sw<-jarque.bera.test(data.sw)$p.value
+sw.pvalue_data.sw<-p.adjust(c(shapiro.test(data.sw)$p.value,sf.test(data.sw)$p.value,jarque.bera.test(data.sw)$p.value),p.method)[1]
+sf.pvalue_data.sw<-p.adjust(c(shapiro.test(data.sw)$p.value,sf.test(data.sw)$p.value,jarque.bera.test(data.sw)$p.value),p.method)[2]
+jb.pvalue_data.sw<-p.adjust(c(shapiro.test(data.sw)$p.value,sf.test(data.sw)$p.value,jarque.bera.test(data.sw)$p.value),p.method)[3]
+
+
 
 # Anderson Darling - in nortest
 ad<-NULL
@@ -41,13 +39,10 @@ if (round(lam[i],2)==0) ad<-rbind(ad,c(lam[i],ad.test(log(data))$statistic))
 adlam<-ad[which.min(ad[,2]),1]
 
 data.ad<-((data^adlam)-1)/adlam
-sw.pvalue_data.ad<-shapiro.test(data.ad)$p.value
-ad.pvalue_data.ad<-ad.test(data.ad)$p.value
-cvm.pvalue_data.ad<-cvm.test(data.ad)$p.value
-pt.pvalue_data.ad<-pearson.test(data.ad)$p.value
-sf.pvalue_data.ad<-sf.test(data.ad)$p.value
-lt.pvalue_data.ad<-lillie.test(data.ad)$p.value
-jb.pvalue_data.ad<-jarque.bera.test(data.ad)$p.value
+sw.pvalue_data.ad<-p.adjust(c(shapiro.test(data.ad)$p.value,sf.test(data.ad)$p.value,jarque.bera.test(data.ad)$p.value),p.method)[1]
+sf.pvalue_data.ad<-p.adjust(c(shapiro.test(data.ad)$p.value,sf.test(data.ad)$p.value,jarque.bera.test(data.ad)$p.value),p.method)[2]
+jb.pvalue_data.ad<-p.adjust(c(shapiro.test(data.ad)$p.value,sf.test(data.ad)$p.value,jarque.bera.test(data.ad)$p.value),p.method)[3]
+
 
 # Cramer Von-Mises - in nortest
 cvm<-NULL
@@ -58,13 +53,11 @@ if (round(lam[i],2)==0) cvm<-rbind(cvm,c(lam[i],cvm.test(log(data))$statistic))
 cvmlam<-cvm[which.min(cvm[,2]),1]
 
 data.cvm<-((data^cvmlam)-1)/cvmlam
-sw.pvalue_data.cvm<-shapiro.test(data.cvm)$p.value
-ad.pvalue_data.cvm<-ad.test(data.cvm)$p.value
-cvm.pvalue_data.cvm<-cvm.test(data.cvm)$p.value
-pt.pvalue_data.cvm<-pearson.test(data.cvm)$p.value
-sf.pvalue_data.cvm<-sf.test(data.cvm)$p.value
-lt.pvalue_data.cvm<-lillie.test(data.cvm)$p.value
-jb.pvalue_data.cvm<-jarque.bera.test(data.cvm)$p.value
+sw.pvalue_data.cvm<-p.adjust(c(shapiro.test(data.cvm)$p.value,sf.test(data.cvm)$p.value,jarque.bera.test(data.cvm)$p.value),p.method)[1]
+sf.pvalue_data.cvm<-p.adjust(c(shapiro.test(data.cvm)$p.value,sf.test(data.cvm)$p.value,jarque.bera.test(data.cvm)$p.value),p.method)[2]
+jb.pvalue_data.cvm<-p.adjust(c(shapiro.test(data.cvm)$p.value,sf.test(data.cvm)$p.value,jarque.bera.test(data.cvm)$p.value),p.method)[3]
+
+
 
 # Pearson Test - in nortest
 pt<-NULL
@@ -75,13 +68,11 @@ if (round(lam[i],2)==0) pt<-rbind(pt,c(lam[i],pearson.test(log(data))$statistic)
 ptlam<-pt[which.min(pt[,2]),1]
 
 data.pt<-((data^ptlam)-1)/ptlam
-sw.pvalue_data.pt<-shapiro.test(data.pt)$p.value
-ad.pvalue_data.pt<-ad.test(data.pt)$p.value
-cvm.pvalue_data.pt<-cvm.test(data.pt)$p.value
-pt.pvalue_data.pt<-pearson.test(data.pt)$p.value
-sf.pvalue_data.pt<-sf.test(data.pt)$p.value
-lt.pvalue_data.pt<-lillie.test(data.pt)$p.value
-jb.pvalue_data.pt<-jarque.bera.test(data.pt)$p.value
+sw.pvalue_data.pt<-p.adjust(c(shapiro.test(data.pt)$p.value,sf.test(data.pt)$p.value,jarque.bera.test(data.pt)$p.value),p.method)[1]
+sf.pvalue_data.pt<-p.adjust(c(shapiro.test(data.pt)$p.value,sf.test(data.pt)$p.value,jarque.bera.test(data.pt)$p.value),p.method)[2]
+jb.pvalue_data.pt<-p.adjust(c(shapiro.test(data.pt)$p.value,sf.test(data.pt)$p.value,jarque.bera.test(data.pt)$p.value),p.method)[3]
+
+
 
 #Shapiro Francia - in nortest
 sf<-NULL
@@ -92,13 +83,11 @@ if (round(lam[i],2)==0) sf<-rbind(sf,c(lam[i],sf.test(log(data))$statistic))
 sflam<-sf[which.max(sf[,2]),1]
 
 data.sf<-((data^sflam)-1)/sflam
-sw.pvalue_data.sf<-shapiro.test(data.sf)$p.value
-ad.pvalue_data.sf<-ad.test(data.sf)$p.value
-cvm.pvalue_data.sf<-cvm.test(data.sf)$p.value
-pt.pvalue_data.sf<-pearson.test(data.sf)$p.value
-sf.pvalue_data.sf<-sf.test(data.sf)$p.value
-lt.pvalue_data.sf<-lillie.test(data.sf)$p.value
-jb.pvalue_data.sf<-jarque.bera.test(data.sf)$p.value
+sw.pvalue_data.sf<-p.adjust(c(shapiro.test(data.sf)$p.value,sf.test(data.sf)$p.value,jarque.bera.test(data.sf)$p.value),p.method)[1]
+sf.pvalue_data.sf<-p.adjust(c(shapiro.test(data.sf)$p.value,sf.test(data.sf)$p.value,jarque.bera.test(data.sf)$p.value),p.method)[2]
+jb.pvalue_data.sf<-p.adjust(c(shapiro.test(data.sf)$p.value,sf.test(data.sf)$p.value,jarque.bera.test(data.sf)$p.value),p.method)[3]
+
+
 
 # Lilliefors - Kolmogorov Smirnov - in nortest
 lt<-NULL
@@ -109,13 +98,11 @@ if (round(lam[i],2)==0) lt<-rbind(lt,c(lam[i],lillie.test(log(data))$statistic))
 ltlam<-lt[which.min(lt[,2]),1]
 
 data.lt<-((data^ltlam)-1)/ltlam
-sw.pvalue_data.lt<-shapiro.test(data.lt)$p.value
-ad.pvalue_data.lt<-ad.test(data.lt)$p.value
-cvm.pvalue_data.lt<-cvm.test(data.lt)$p.value
-pt.pvalue_data.lt<-pearson.test(data.lt)$p.value
-sf.pvalue_data.lt<-sf.test(data.lt)$p.value
-lt.pvalue_data.lt<-lillie.test(data.lt)$p.value
-jb.pvalue_data.lt<-jarque.bera.test(data.lt)$p.value
+sw.pvalue_data.lt<-p.adjust(c(shapiro.test(data.lt)$p.value,sf.test(data.lt)$p.value,jarque.bera.test(data.lt)$p.value),p.method)[1]
+sf.pvalue_data.lt<-p.adjust(c(shapiro.test(data.lt)$p.value,sf.test(data.lt)$p.value,jarque.bera.test(data.lt)$p.value),p.method)[2]
+jb.pvalue_data.lt<-p.adjust(c(shapiro.test(data.lt)$p.value,sf.test(data.lt)$p.value,jarque.bera.test(data.lt)$p.value),p.method)[3]
+
+
 
 # Jarque-Bera in tseries
 jb<-NULL
@@ -126,13 +113,12 @@ if (round(lam[i],2)==0) jb<-rbind(jb,c(lam[i],jarque.bera.test(log(data))$statis
 jblam<-jb[which.min(jb[,2]),1]
 
 data.jb<-((data^jblam)-1)/jblam
-sw.pvalue_data.jb<-shapiro.test(data.jb)$p.value
-ad.pvalue_data.jb<-ad.test(data.jb)$p.value
-cvm.pvalue_data.jb<-cvm.test(data.jb)$p.value
-pt.pvalue_data.jb<-pearson.test(data.jb)$p.value
-sf.pvalue_data.jb<-sf.test(data.jb)$p.value
-lt.pvalue_data.jb<-lillie.test(data.jb)$p.value
-jb.pvalue_data.jb<-jarque.bera.test(data.jb)$p.value
+sw.pvalue_data.jb<-p.adjust(c(shapiro.test(data.jb)$p.value,sf.test(data.jb)$p.value,jarque.bera.test(data.jb)$p.value),p.method)[1]
+sf.pvalue_data.jb<-p.adjust(c(shapiro.test(data.jb)$p.value,sf.test(data.jb)$p.value,jarque.bera.test(data.jb)$p.value),p.method)[2]
+jb.pvalue_data.jb<-p.adjust(c(shapiro.test(data.jb)$p.value,sf.test(data.jb)$p.value,jarque.bera.test(data.jb)$p.value),p.method)[3]
+
+
+
 
 aclam1<-NULL
 for (q in 1:rep) {
@@ -176,27 +162,21 @@ aclam1<-as.numeric(aclam1)
 aclam2<-mean(aclam1)
 
 data.ac<-((data^aclam2)-1)/aclam2
-sw.pvalue_data.ac<-shapiro.test(data.ac)$p.value
-ad.pvalue_data.ac<-ad.test(data.ac)$p.value
-cvm.pvalue_data.ac<-cvm.test(data.ac)$p.value
-pt.pvalue_data.ac<-pearson.test(data.ac)$p.value
-sf.pvalue_data.ac<-sf.test(data.ac)$p.value
-lt.pvalue_data.ac<-lillie.test(data.ac)$p.value
-jb.pvalue_data.ac<-jarque.bera.test(data.ac)$p.value
+sw.pvalue_data.ac<-p.adjust(c(shapiro.test(data.ac)$p.value,sf.test(data.ac)$p.value,jarque.bera.test(data.ac)$p.value),p.method)[1]
+sf.pvalue_data.ac<-p.adjust(c(shapiro.test(data.ac)$p.value,sf.test(data.ac)$p.value,jarque.bera.test(data.ac)$p.value),p.method)[2]
+jb.pvalue_data.ac<-p.adjust(c(shapiro.test(data.ac)$p.value,sf.test(data.ac)$p.value,jarque.bera.test(data.ac)$p.value),p.method)[3]
 
 
-result<-matrix(0,8,8)
+
+
+result<-matrix(0,4,8)
 colnames(result)<-c("sw","ad","cvm","pt","sf","lt","jb","ac")
-rownames(result)<-c("lambda.hat","sw.pvalue","ad.pvalue","cvm.pvalue","pt.pvalue","sf.pvalue","lt.pvalue","jb.pvalue")
+rownames(result)<-c("lambda.hat","sw.pvalue","sf.pvalue","jb.pvalue")
 
 result[1,]<-c(swlam,adlam,cvmlam,ptlam,sflam,ltlam,jblam,aclam2)
 result[2,]<-c(sw.pvalue_data.sw,sw.pvalue_data.ad,sw.pvalue_data.cvm,sw.pvalue_data.pt,sw.pvalue_data.sf,sw.pvalue_data.lt,sw.pvalue_data.jb,sw.pvalue_data.ac)
-result[3,]<-c(ad.pvalue_data.sw,ad.pvalue_data.ad,ad.pvalue_data.cvm,ad.pvalue_data.pt,ad.pvalue_data.sf,ad.pvalue_data.lt,ad.pvalue_data.jb,ad.pvalue_data.ac)
-result[4,]<-c(cvm.pvalue_data.sw,cvm.pvalue_data.ad,cvm.pvalue_data.cvm,cvm.pvalue_data.pt,cvm.pvalue_data.sf,cvm.pvalue_data.lt,cvm.pvalue_data.jb,cvm.pvalue_data.ac)
-result[5,]<-c(pt.pvalue_data.sw,pt.pvalue_data.ad,pt.pvalue_data.cvm,pt.pvalue_data.pt,pt.pvalue_data.sf,pt.pvalue_data.lt,pt.pvalue_data.jb,pt.pvalue_data.ac)
-result[6,]<-c(sf.pvalue_data.sw,sf.pvalue_data.ad,sf.pvalue_data.cvm,sf.pvalue_data.pt,sf.pvalue_data.sf,sf.pvalue_data.lt,sf.pvalue_data.jb,sf.pvalue_data.ac)
-result[7,]<-c(lt.pvalue_data.sw,lt.pvalue_data.ad,lt.pvalue_data.cvm,lt.pvalue_data.pt,lt.pvalue_data.sf,lt.pvalue_data.lt,lt.pvalue_data.jb,lt.pvalue_data.ac)
-result[8,]<-c(jb.pvalue_data.sw,jb.pvalue_data.ad,jb.pvalue_data.cvm,jb.pvalue_data.pt,jb.pvalue_data.sf,jb.pvalue_data.lt,jb.pvalue_data.jb,jb.pvalue_data.ac)
+result[3,]<-c(sf.pvalue_data.sw,sf.pvalue_data.ad,sf.pvalue_data.cvm,sf.pvalue_data.pt,sf.pvalue_data.sf,sf.pvalue_data.lt,sf.pvalue_data.jb,sf.pvalue_data.ac)
+result[4,]<-c(jb.pvalue_data.sw,jb.pvalue_data.ad,jb.pvalue_data.cvm,jb.pvalue_data.pt,jb.pvalue_data.sf,jb.pvalue_data.lt,jb.pvalue_data.jb,jb.pvalue_data.ac)
 
 
 out<-list()
@@ -224,18 +204,14 @@ abline(v=swlam,lty=2)
 
 
 data.sw<-((data^swlam)-1)/swlam
-sw.pvalue_data.sw<-shapiro.test(data.sw)$p.value
-ad.pvalue_data.sw<-ad.test(data.sw)$p.value
-cvm.pvalue_data.sw<-cvm.test(data.sw)$p.value
-pt.pvalue_data.sw<-pearson.test(data.sw)$p.value
-sf.pvalue_data.sw<-sf.test(data.sw)$p.value
-lt.pvalue_data.sw<-lillie.test(data.sw)$p.value
-jb.pvalue_data.sw<-jarque.bera.test(data.sw)$p.value
+sw.pvalue_data.sw<-p.adjust(c(shapiro.test(data.sw)$p.value,sf.test(data.sw)$p.value,jarque.bera.test(data.sw)$p.value),p.method)[1]
+sf.pvalue_data.sw<-p.adjust(c(shapiro.test(data.sw)$p.value,sf.test(data.sw)$p.value,jarque.bera.test(data.sw)$p.value),p.method)[2]
+jb.pvalue_data.sw<-p.adjust(c(shapiro.test(data.sw)$p.value,sf.test(data.sw)$p.value,jarque.bera.test(data.sw)$p.value),p.method)[3]
 
 
-result<-matrix(0,8,1)
-colnames(result)<-c("sw");rownames(result)<-c("lambda.hat","sw.pvalue","ad.pvalue","cvm.pvalue","pt.pvalue","sf.pvalue","lt.pvalue","jb.pvalue")
-result[,1]<-c(swlam,sw.pvalue_data.sw,ad.pvalue_data.sw,cvm.pvalue_data.sw,pt.pvalue_data.sw,sf.pvalue_data.sw,lt.pvalue_data.sw,jb.pvalue_data.sw)
+result<-matrix(0,4,1)
+colnames(result)<-c("sw");rownames(result)<-c("lambda.hat","sw.pvalue","sf.pvalue","jb.pvalue")
+result[,1]<-c(swlam,sw.pvalue_data.sw,sf.pvalue_data.sw,jb.pvalue_data.sw)
 
 out<-list()
 out$title<-"Implementation of Box-Cox Power Transformation when No Covariate Is Available"
@@ -265,18 +241,14 @@ abline(v=adlam,lty=2)
 
 
 data.ad<-((data^adlam)-1)/adlam
-sw.pvalue_data.ad<-shapiro.test(data.ad)$p.value
-ad.pvalue_data.ad<-ad.test(data.ad)$p.value
-cvm.pvalue_data.ad<-cvm.test(data.ad)$p.value
-pt.pvalue_data.ad<-pearson.test(data.ad)$p.value
-sf.pvalue_data.ad<-sf.test(data.ad)$p.value
-lt.pvalue_data.ad<-lillie.test(data.ad)$p.value
-jb.pvalue_data.ad<-jarque.bera.test(data.ad)$p.value
+sw.pvalue_data.ad<-p.adjust(c(shapiro.test(data.ad)$p.value,sf.test(data.ad)$p.value,jarque.bera.test(data.ad)$p.value),p.method)[1]
+sf.pvalue_data.ad<-p.adjust(c(shapiro.test(data.ad)$p.value,sf.test(data.ad)$p.value,jarque.bera.test(data.ad)$p.value),p.method)[2]
+jb.pvalue_data.ad<-p.adjust(c(shapiro.test(data.ad)$p.value,sf.test(data.ad)$p.value,jarque.bera.test(data.ad)$p.value),p.method)[3]
 
 
-result<-matrix(0,8,1)
-colnames(result)<-c("ad");rownames(result)<-c("lambda.hat","sw.pvalue","ad.pvalue","cvm.pvalue","pt.pvalue","sf.pvalue","lt.pvalue","jb.pvalue")
-result[,1]<-c(adlam,sw.pvalue_data.ad,ad.pvalue_data.ad,cvm.pvalue_data.ad,pt.pvalue_data.ad,sf.pvalue_data.ad,lt.pvalue_data.ad,jb.pvalue_data.ad)
+result<-matrix(0,4,1)
+colnames(result)<-c("ad");rownames(result)<-c("lambda.hat","sw.pvalue","sf.pvalue","jb.pvalue")
+result[,1]<-c(adlam,sw.pvalue_data.ad,sf.pvalue_data.ad,jb.pvalue_data.ad)
 
 out<-list()
 out$title<-"Implementation of Box-Cox Power Transformation when No Covariate Is Available"
@@ -307,17 +279,13 @@ abline(v=cvmlam,lty=2)
 
 
 data.cvm<-((data^cvmlam)-1)/cvmlam
-sw.pvalue_data.cvm<-shapiro.test(data.cvm)$p.value
-ad.pvalue_data.cvm<-ad.test(data.cvm)$p.value
-cvm.pvalue_data.cvm<-cvm.test(data.cvm)$p.value
-pt.pvalue_data.cvm<-pearson.test(data.cvm)$p.value
-sf.pvalue_data.cvm<-sf.test(data.cvm)$p.value
-lt.pvalue_data.cvm<-lillie.test(data.cvm)$p.value
-jb.pvalue_data.cvm<-jarque.bera.test(data.cvm)$p.value
+sw.pvalue_data.cvm<-p.adjust(c(shapiro.test(data.cvm)$p.value,sf.test(data.cvm)$p.value,jarque.bera.test(data.cvm)$p.value),p.method)[1]
+sf.pvalue_data.cvm<-p.adjust(c(shapiro.test(data.cvm)$p.value,sf.test(data.cvm)$p.value,jarque.bera.test(data.cvm)$p.value),p.method)[2]
+jb.pvalue_data.cvm<-p.adjust(c(shapiro.test(data.cvm)$p.value,sf.test(data.cvm)$p.value,jarque.bera.test(data.cvm)$p.value),p.method)[3]
 
-result<-matrix(0,8,1)
-colnames(result)<-c("cvm");rownames(result)<-c("lambda.hat","sw.pvalue","ad.pvalue","cvm.pvalue","pt.pvalue","sf.pvalue","lt.pvalue","jb.pvalue")
-result[,1]<-c(cvmlam,sw.pvalue_data.cvm,ad.pvalue_data.cvm,cvm.pvalue_data.cvm,pt.pvalue_data.cvm,sf.pvalue_data.cvm,lt.pvalue_data.cvm,jb.pvalue_data.cvm)
+result<-matrix(0,4,1)
+colnames(result)<-c("cvm");rownames(result)<-c("lambda.hat","sw.pvalue","sf.pvalue","jb.pvalue")
+result[,1]<-c(cvmlam,sw.pvalue_data.cvm,sf.pvalue_data.cvm,jb.pvalue_data.cvm)
 
 
 out<-list()
@@ -348,17 +316,13 @@ abline(v=ptlam,lty=2)
 
 
 data.pt<-((data^ptlam)-1)/ptlam
-sw.pvalue_data.pt<-shapiro.test(data.pt)$p.value
-ad.pvalue_data.pt<-ad.test(data.pt)$p.value
-cvm.pvalue_data.pt<-cvm.test(data.pt)$p.value
-pt.pvalue_data.pt<-pearson.test(data.pt)$p.value
-sf.pvalue_data.pt<-sf.test(data.pt)$p.value
-lt.pvalue_data.pt<-lillie.test(data.pt)$p.value
-jb.pvalue_data.pt<-jarque.bera.test(data.pt)$p.value
+sw.pvalue_data.pt<-p.adjust(c(shapiro.test(data.pt)$p.value,sf.test(data.pt)$p.value,jarque.bera.test(data.pt)$p.value),p.method)[1]
+sf.pvalue_data.pt<-p.adjust(c(shapiro.test(data.pt)$p.value,sf.test(data.pt)$p.value,jarque.bera.test(data.pt)$p.value),p.method)[2]
+jb.pvalue_data.pt<-p.adjust(c(shapiro.test(data.pt)$p.value,sf.test(data.pt)$p.value,jarque.bera.test(data.pt)$p.value),p.method)[3]
 
-result<-matrix(0,8,1)
-colnames(result)<-c("pt");rownames(result)<-c("lambda.hat","sw.pvalue","ad.pvalue","cvm.pvalue","pt.pvalue","sf.pvalue","lt.pvalue","jb.pvalue")
-result[,1]<-c(ptlam,sw.pvalue_data.pt,ad.pvalue_data.pt,cvm.pvalue_data.pt,pt.pvalue_data.pt,sf.pvalue_data.pt,lt.pvalue_data.pt,jb.pvalue_data.pt)
+result<-matrix(0,4,1)
+colnames(result)<-c("pt");rownames(result)<-c("lambda.hat","sw.pvalue","sf.pvalue","jb.pvalue")
+result[,1]<-c(ptlam,sw.pvalue_data.pt,sf.pvalue_data.pt,jb.pvalue_data.pt)
 
 
 
@@ -389,17 +353,13 @@ abline(v=sflam,lty=2)
 
 
 data.sf<-((data^sflam)-1)/sflam
-sw.pvalue_data.sf<-shapiro.test(data.sf)$p.value
-ad.pvalue_data.sf<-ad.test(data.sf)$p.value
-cvm.pvalue_data.sf<-cvm.test(data.sf)$p.value
-pt.pvalue_data.sf<-pearson.test(data.sf)$p.value
-sf.pvalue_data.sf<-sf.test(data.sf)$p.value
-lt.pvalue_data.sf<-lillie.test(data.sf)$p.value
-jb.pvalue_data.sf<-jarque.bera.test(data.sf)$p.value
+sw.pvalue_data.sf<-p.adjust(c(shapiro.test(data.sf)$p.value,sf.test(data.sf)$p.value,jarque.bera.test(data.sf)$p.value),p.method)[1]
+sf.pvalue_data.sf<-p.adjust(c(shapiro.test(data.sf)$p.value,sf.test(data.sf)$p.value,jarque.bera.test(data.sf)$p.value),p.method)[2]
+jb.pvalue_data.sf<-p.adjust(c(shapiro.test(data.sf)$p.value,sf.test(data.sf)$p.value,jarque.bera.test(data.sf)$p.value),p.method)[3]
 
-result<-matrix(0,8,1)
-colnames(result)<-c("sf");rownames(result)<-c("lambda.hat","sw.pvalue","ad.pvalue","cvm.pvalue","pt.pvalue","sf.pvalue","lt.pvalue","jb.pvalue")
-result[,1]<-c(sflam,sw.pvalue_data.sf,ad.pvalue_data.sf,cvm.pvalue_data.sf,pt.pvalue_data.sf,sf.pvalue_data.sf,lt.pvalue_data.sf,jb.pvalue_data.sf)
+result<-matrix(0,4,1)
+colnames(result)<-c("sf");rownames(result)<-c("lambda.hat","sw.pvalue","sf.pvalue","jb.pvalue")
+result[,1]<-c(sflam,sw.pvalue_data.sf,sf.pvalue_data.sf,jb.pvalue_data.sf)
 
 
 out<-list()
@@ -429,17 +389,13 @@ abline(v=ltlam,lty=2)
 
 
 data.lt<-((data^ltlam)-1)/ltlam
-sw.pvalue_data.lt<-shapiro.test(data.lt)$p.value
-ad.pvalue_data.lt<-ad.test(data.lt)$p.value
-cvm.pvalue_data.lt<-cvm.test(data.lt)$p.value
-pt.pvalue_data.lt<-pearson.test(data.lt)$p.value
-sf.pvalue_data.lt<-sf.test(data.lt)$p.value
-lt.pvalue_data.lt<-lillie.test(data.lt)$p.value
-jb.pvalue_data.lt<-jarque.bera.test(data.lt)$p.value
+sw.pvalue_data.lt<-p.adjust(c(shapiro.test(data.lt)$p.value,sf.test(data.lt)$p.value,jarque.bera.test(data.lt)$p.value),p.method)[1]
+sf.pvalue_data.lt<-p.adjust(c(shapiro.test(data.lt)$p.value,sf.test(data.lt)$p.value,jarque.bera.test(data.lt)$p.value),p.method)[2]
+jb.pvalue_data.lt<-p.adjust(c(shapiro.test(data.lt)$p.value,sf.test(data.lt)$p.value,jarque.bera.test(data.lt)$p.value),p.method)[3]
 
-result<-matrix(0,8,1)
-colnames(result)<-c("lt");rownames(result)<-c("lambda.hat","sw.pvalue","ad.pvalue","cvm.pvalue","pt.pvalue","sf.pvalue","lt.pvalue","jb.pvalue")
-result[,1]<-c(ltlam,sw.pvalue_data.lt,ad.pvalue_data.lt,cvm.pvalue_data.lt,pt.pvalue_data.lt,sf.pvalue_data.lt,lt.pvalue_data.lt,jb.pvalue_data.lt)
+result<-matrix(0,4,1)
+colnames(result)<-c("lt");rownames(result)<-c("lambda.hat","sw.pvalue","sf.pvalue","jb.pvalue")
+result[,1]<-c(ltlam,sw.pvalue_data.lt,sf.pvalue_data.lt,jb.pvalue_data.lt)
 
 
 out<-list()
@@ -471,17 +427,13 @@ abline(v=jblam,lty=2)
 
 
 data.jb<-((data^jblam)-1)/jblam
-sw.pvalue_data.jb<-shapiro.test(data.jb)$p.value
-ad.pvalue_data.jb<-ad.test(data.jb)$p.value
-cvm.pvalue_data.jb<-cvm.test(data.jb)$p.value
-pt.pvalue_data.jb<-pearson.test(data.jb)$p.value
-sf.pvalue_data.jb<-sf.test(data.jb)$p.value
-lt.pvalue_data.jb<-lillie.test(data.jb)$p.value
-jb.pvalue_data.jb<-jarque.bera.test(data.jb)$p.value
+sw.pvalue_data.jb<-p.adjust(c(shapiro.test(data.jb)$p.value,sf.test(data.jb)$p.value,jarque.bera.test(data.jb)$p.value),p.method)[1]
+sf.pvalue_data.jb<-p.adjust(c(shapiro.test(data.jb)$p.value,sf.test(data.jb)$p.value,jarque.bera.test(data.jb)$p.value),p.method)[2]
+jb.pvalue_data.jb<-p.adjust(c(shapiro.test(data.jb)$p.value,sf.test(data.jb)$p.value,jarque.bera.test(data.jb)$p.value),p.method)[3]
 
-result<-matrix(0,8,1)
-colnames(result)<-c("jb");rownames(result)<-c("lambda.hat","sw.pvalue","ad.pvalue","cvm.pvalue","pt.pvalue","sf.pvalue","lt.pvalue","jb.pvalue")
-result[,1]<-c(jblam,sw.pvalue_data.jb,ad.pvalue_data.jb,cvm.pvalue_data.jb,pt.pvalue_data.jb,sf.pvalue_data.jb,lt.pvalue_data.jb,jb.pvalue_data.jb)
+result<-matrix(0,4,1)
+colnames(result)<-c("jb");rownames(result)<-c("lambda.hat","sw.pvalue","sf.pvalue","jb.pvalue")
+result[,1]<-c(jblam,sw.pvalue_data.jb,sf.pvalue_data.jb,jb.pvalue_data.jb)
 
 
 out<-list()
@@ -513,17 +465,13 @@ aclam1<-as.numeric(aclam1)
 aclam2<-mean(aclam1)
 
 data.ac<-((data^aclam2)-1)/aclam2
-sw.pvalue_data.ac<-shapiro.test(data.ac)$p.value
-ad.pvalue_data.ac<-ad.test(data.ac)$p.value
-cvm.pvalue_data.ac<-cvm.test(data.ac)$p.value
-pt.pvalue_data.ac<-pearson.test(data.ac)$p.value
-sf.pvalue_data.ac<-sf.test(data.ac)$p.value
-lt.pvalue_data.ac<-lillie.test(data.ac)$p.value
-jb.pvalue_data.ac<-jarque.bera.test(data.ac)$p.value
+sw.pvalue_data.ac<-p.adjust(c(shapiro.test(data.ac)$p.value,sf.test(data.ac)$p.value,jarque.bera.test(data.ac)$p.value),p.method)[1]
+sf.pvalue_data.ac<-p.adjust(c(shapiro.test(data.ac)$p.value,sf.test(data.ac)$p.value,jarque.bera.test(data.ac)$p.value),p.method)[2]
+jb.pvalue_data.ac<-p.adjust(c(shapiro.test(data.ac)$p.value,sf.test(data.ac)$p.value,jarque.bera.test(data.ac)$p.value),p.method)[3]
 
-result<-matrix(0,8,1)
-colnames(result)<-c("ac");rownames(result)<-c("lambda.hat","sw.pvalue","ad.pvalue","cvm.pvalue","pt.pvalue","sf.pvalue","lt.pvalue","jb.pvalue")
-result[,1]<-c(aclam2,sw.pvalue_data.ac,ad.pvalue_data.ac,cvm.pvalue_data.ac,pt.pvalue_data.ac,sf.pvalue_data.ac,lt.pvalue_data.ac,jb.pvalue_data.ac)
+result<-matrix(0,4,1)
+colnames(result)<-c("ac");rownames(result)<-c("lambda.hat","sw.pvalue","sf.pvalue","jb.pvalue")
+result[,1]<-c(aclam2,sw.pvalue_data.ac,sf.pvalue_data.ac,jb.pvalue_data.ac)
 
 out<-list()
 out$title<-"Implementation of Box-Cox Power Transformation when No Covariate Is Available"
