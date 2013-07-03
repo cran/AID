@@ -161,6 +161,24 @@ title("Artificial Covariate")
 aclam1<-as.numeric(aclam1)
 aclam2<-mean(aclam1)
 
+if (swlam==max(lam)) stop("Enlarge the range of the lambda in a positive direction")
+if (swlam==min(lam)) stop("Enlarge the range of the lambda in a negative direction")
+if (adlam==max(lam)) stop("Enlarge the range of the lambda in a positive direction")
+if (adlam==min(lam)) stop("Enlarge the range of the lambda in a negative direction")
+if (cvmlam==max(lam)) stop("Enlarge the range of the lambda in a positive direction")
+if (cvmlam==min(lam)) stop("Enlarge the range of the lambda in a negative direction")
+if (ptlam==max(lam)) stop("Enlarge the range of the lambda in a positive direction")
+if (ptlam==min(lam)) stop("Enlarge the range of the lambda in a negative direction")
+if (sflam==max(lam)) stop("Enlarge the range of the lambda in a positive direction")
+if (sflam==min(lam)) stop("Enlarge the range of the lambda in a negative direction")
+if (ltlam==max(lam)) stop("Enlarge the range of the lambda in a positive direction")
+if (ltlam==min(lam)) stop("Enlarge the range of the lambda in a negative direction")
+if (jblam==max(lam)) stop("Enlarge the range of the lambda in a positive direction")
+if (jblam==min(lam)) stop("Enlarge the range of the lambda in a negative direction")
+if (aclam==max(lam)) stop("Enlarge the range of the lambda in a positive direction")
+if (aclam==min(lam)) stop("Enlarge the range of the lambda in a negative direction")
+
+
 data.ac<-((data^aclam2)-1)/aclam2
 sw.pvalue_data.ac<-p.adjust(c(shapiro.test(data.ac)$p.value,sf.test(data.ac)$p.value,jarque.bera.test(data.ac)$p.value),p.method)[1]
 sf.pvalue_data.ac<-p.adjust(c(shapiro.test(data.ac)$p.value,sf.test(data.ac)$p.value,jarque.bera.test(data.ac)$p.value),p.method)[2]
@@ -203,6 +221,10 @@ abline(v=swlam,lty=2)
 }
 
 
+if (swlam==max(lam)) stop("Enlarge the range of the lambda in a positive direction")
+if (swlam==min(lam)) stop("Enlarge the range of the lambda in a negative direction")
+
+
 data.sw<-((data^swlam)-1)/swlam
 sw.pvalue_data.sw<-p.adjust(c(shapiro.test(data.sw)$p.value,sf.test(data.sw)$p.value,jarque.bera.test(data.sw)$p.value),p.method)[1]
 sf.pvalue_data.sw<-p.adjust(c(shapiro.test(data.sw)$p.value,sf.test(data.sw)$p.value,jarque.bera.test(data.sw)$p.value),p.method)[2]
@@ -238,6 +260,9 @@ plot(ad[,1],ad[,2],ylab="test statistic",xlab=expression(lambda),main="Anderson-
 abline(v=adlam,lty=2)
 }
 
+
+if (adlam==max(lam)) stop("Enlarge the range of the lambda in a positive direction")
+if (adlam==min(lam)) stop("Enlarge the range of the lambda in a negative direction")
 
 
 data.ad<-((data^adlam)-1)/adlam
@@ -278,6 +303,10 @@ abline(v=cvmlam,lty=2)
 }
 
 
+if (cvmlam==max(lam)) stop("Enlarge the range of the lambda in a positive direction")
+if (cvmlam==min(lam)) stop("Enlarge the range of the lambda in a negative direction")
+
+
 data.cvm<-((data^cvmlam)-1)/cvmlam
 sw.pvalue_data.cvm<-p.adjust(c(shapiro.test(data.cvm)$p.value,sf.test(data.cvm)$p.value,jarque.bera.test(data.cvm)$p.value),p.method)[1]
 sf.pvalue_data.cvm<-p.adjust(c(shapiro.test(data.cvm)$p.value,sf.test(data.cvm)$p.value,jarque.bera.test(data.cvm)$p.value),p.method)[2]
@@ -313,6 +342,9 @@ plot(pt[,1],pt[,2],ylab="test statistic",xlab=expression(lambda),main="Pearson C
 abline(v=ptlam,lty=2)
 }
 
+
+if (ptlam==max(lam)) stop("Enlarge the range of the lambda in a positive direction")
+if (ptlam==min(lam)) stop("Enlarge the range of the lambda in a negative direction")
 
 
 data.pt<-((data^ptlam)-1)/ptlam
@@ -352,6 +384,10 @@ abline(v=sflam,lty=2)
 }
 
 
+if (sflam==max(lam)) stop("Enlarge the range of the lambda in a positive direction")
+if (sflam==min(lam)) stop("Enlarge the range of the lambda in a negative direction")
+
+
 data.sf<-((data^sflam)-1)/sflam
 sw.pvalue_data.sf<-p.adjust(c(shapiro.test(data.sf)$p.value,sf.test(data.sf)$p.value,jarque.bera.test(data.sf)$p.value),p.method)[1]
 sf.pvalue_data.sf<-p.adjust(c(shapiro.test(data.sf)$p.value,sf.test(data.sf)$p.value,jarque.bera.test(data.sf)$p.value),p.method)[2]
@@ -387,6 +423,8 @@ plot(lt[,1],lt[,2],ylab="test statistic",xlab=expression(lambda),main="Lilliefor
 abline(v=ltlam,lty=2)
 }
 
+if (ltlam==max(lam)) stop("Enlarge the range of the lambda in a positive direction")
+if (ltlam==min(lam)) stop("Enlarge the range of the lambda in a negative direction")
 
 data.lt<-((data^ltlam)-1)/ltlam
 sw.pvalue_data.lt<-p.adjust(c(shapiro.test(data.lt)$p.value,sf.test(data.lt)$p.value,jarque.bera.test(data.lt)$p.value),p.method)[1]
@@ -424,7 +462,8 @@ plot(jb[,1],jb[,2],ylab="test statistic",xlab=expression(lambda),main="Jarque-Be
 abline(v=jblam,lty=2)
 }
 
-
+if (jblam==max(lam)) stop("Enlarge the range of the lambda in a positive direction")
+if (jblam==min(lam)) stop("Enlarge the range of the lambda in a negative direction")
 
 data.jb<-((data^jblam)-1)/jblam
 sw.pvalue_data.jb<-p.adjust(c(shapiro.test(data.jb)$p.value,sf.test(data.jb)$p.value,jarque.bera.test(data.jb)$p.value),p.method)[1]
@@ -463,6 +502,9 @@ title("Artificial Covariate")
 }
 aclam1<-as.numeric(aclam1)
 aclam2<-mean(aclam1)
+
+if (aclam2==max(lam)) stop("Enlarge the range of the lambda in a positive direction")
+if (aclam2==min(lam)) stop("Enlarge the range of the lambda in a negative direction")
 
 data.ac<-((data^aclam2)-1)/aclam2
 sw.pvalue_data.ac<-p.adjust(c(shapiro.test(data.ac)$p.value,sf.test(data.ac)$p.value,jarque.bera.test(data.ac)$p.value),p.method)[1]

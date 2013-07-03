@@ -7,7 +7,8 @@ A Function to Estimate Box-Cox Power Transformation Parameter via Normality Test
 \description{
 \code{boxcoxnc} utilizes seven different normality tests and artifical covariate method to estimate Box-Cox power transformation parameter and provides graphical analysis
 }
-\usage{boxcoxnc(data, method = "all", lam = seq(-2,2,0.01), plotit = TRUE, rep = 30, p.method = "BY")
+\usage{boxcoxnc(data, method = "all", lam = seq(-2,2,0.01), plotit = TRUE, rep = 30,
+			p.method = "BY")
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -45,7 +46,7 @@ Venables, W. N., Ripley, B. D. (2002). \emph{Modern Applied Statistics with S 4t
 Osman Dag, Ozgur Asar, Ozlem Ilk
 }
 \note{
-This is the version 1.2 of this user documentation file.
+This is the version 1.3 of this user documentation file.
 }
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
