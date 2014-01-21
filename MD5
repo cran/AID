@@ -1,9 +1,9 @@
-f9c6c81db91e28a7fe113decef3bb57c *DESCRIPTION
-46f1f62c410e39c2a640d1a53da6003d *NAMESPACE
-ac74f7bd66cb5c887e516b7c02754f72 *R/boxcoxnc.R
+019f54f98cee26e7f41693685ff4cc93 *DESCRIPTION
+9b039cc3f7b45b74a639c2c5a05fac53 *NAMESPACE
+aa5fe2490662b7d38e0578be1f8cfa75 *R/boxcoxnc.R
 da60dfe912df61442cd159d3c14e21f5 *data/grades.rda
 bb3be1762b0f88727599f931b8c78da8 *data/textile.rda
-e213b6611ac3140303de3cc64ef5e378 *man/AID.Rd
-0fd91ec180353c94d2ea1cafe2dc2e8e *man/boxcoxnc.Rd
+8709b44779cdc0bae712e8edb3976822 *man/AID.Rd
+e7818ac0062eb869ab6001eab2613603 *man/boxcoxnc.Rd
 5384d3e0e16a2df11d75964ffd083e1a *man/grades.Rd
 bbe5644e262fec6cc019bce46e430f62 *man/textile.Rd

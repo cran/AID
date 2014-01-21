@@ -12,8 +12,8 @@ Includes a function to estimate the power transformation parameter and some data
 \tabular{ll}{
 Package: \tab AID\cr
 Type: \tab Package\cr
-Version: \tab 1.3\cr
-Date: \tab 2013-07-03\cr
+Version: \tab 1.4\cr
+Date: \tab 2014-01-21\cr
 License: \tab GPL (>=2)\cr
 }
 }

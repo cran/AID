@@ -3,10 +3,6 @@ function(data,method="all",lam=seq(-2,2,0.01),plotit = TRUE,rep=30,p.method="BY"
 {
 
 
-library(nortest)
-library(tseries)
-library(MASS)
-
 data<-as.numeric(data)
 
 if (is.na(min(data))==TRUE) stop("Data include NA")
@@ -23,7 +19,10 @@ if (round(lam[i],2)!=0) sw<-rbind(sw,c(lam[i],shapiro.test((data**(lam[i])-1)/(l
 if (round(lam[i],2)==0) sw<-rbind(sw,c(lam[i],shapiro.test(log(data))$statistic))
 }
 swlam<-sw[which.max(sw[,2]),1]
-data.sw<-((data^swlam)-1)/swlam
+
+if (swlam!=0) data.sw<-((data^swlam)-1)/swlam
+if (swlam==0) data.sw<-log(data)
+
 sw.pvalue_data.sw<-p.adjust(c(shapiro.test(data.sw)$p.value,sf.test(data.sw)$p.value,jarque.bera.test(data.sw)$p.value),p.method)[1]
 sf.pvalue_data.sw<-p.adjust(c(shapiro.test(data.sw)$p.value,sf.test(data.sw)$p.value,jarque.bera.test(data.sw)$p.value),p.method)[2]
 jb.pvalue_data.sw<-p.adjust(c(shapiro.test(data.sw)$p.value,sf.test(data.sw)$p.value,jarque.bera.test(data.sw)$p.value),p.method)[3]
@@ -38,7 +37,10 @@ if (round(lam[i],2)==0) ad<-rbind(ad,c(lam[i],ad.test(log(data))$statistic))
 }
 adlam<-ad[which.min(ad[,2]),1]
 
-data.ad<-((data^adlam)-1)/adlam
+if (adlam!=0) data.ad<-((data^adlam)-1)/adlam
+if (adlam==0) data.ad<-log(data)
+
+
 sw.pvalue_data.ad<-p.adjust(c(shapiro.test(data.ad)$p.value,sf.test(data.ad)$p.value,jarque.bera.test(data.ad)$p.value),p.method)[1]
 sf.pvalue_data.ad<-p.adjust(c(shapiro.test(data.ad)$p.value,sf.test(data.ad)$p.value,jarque.bera.test(data.ad)$p.value),p.method)[2]
 jb.pvalue_data.ad<-p.adjust(c(shapiro.test(data.ad)$p.value,sf.test(data.ad)$p.value,jarque.bera.test(data.ad)$p.value),p.method)[3]
@@ -52,7 +54,10 @@ if (round(lam[i],2)==0) cvm<-rbind(cvm,c(lam[i],cvm.test(log(data))$statistic))
 }
 cvmlam<-cvm[which.min(cvm[,2]),1]
 
-data.cvm<-((data^cvmlam)-1)/cvmlam
+
+if (cvmlam!=0) data.cvm<-((data^cvmlam)-1)/cvmlam
+if (cvmlam==0) data.cvm<-log(data)
+
 sw.pvalue_data.cvm<-p.adjust(c(shapiro.test(data.cvm)$p.value,sf.test(data.cvm)$p.value,jarque.bera.test(data.cvm)$p.value),p.method)[1]
 sf.pvalue_data.cvm<-p.adjust(c(shapiro.test(data.cvm)$p.value,sf.test(data.cvm)$p.value,jarque.bera.test(data.cvm)$p.value),p.method)[2]
 jb.pvalue_data.cvm<-p.adjust(c(shapiro.test(data.cvm)$p.value,sf.test(data.cvm)$p.value,jarque.bera.test(data.cvm)$p.value),p.method)[3]
@@ -67,7 +72,10 @@ if (round(lam[i],2)==0) pt<-rbind(pt,c(lam[i],pearson.test(log(data))$statistic)
 }
 ptlam<-pt[which.min(pt[,2]),1]
 
-data.pt<-((data^ptlam)-1)/ptlam
+
+if (ptlam!=0) data.pt<-((data^ptlam)-1)/ptlam
+if (ptlam==0) data.pt<-log(data)
+
 sw.pvalue_data.pt<-p.adjust(c(shapiro.test(data.pt)$p.value,sf.test(data.pt)$p.value,jarque.bera.test(data.pt)$p.value),p.method)[1]
 sf.pvalue_data.pt<-p.adjust(c(shapiro.test(data.pt)$p.value,sf.test(data.pt)$p.value,jarque.bera.test(data.pt)$p.value),p.method)[2]
 jb.pvalue_data.pt<-p.adjust(c(shapiro.test(data.pt)$p.value,sf.test(data.pt)$p.value,jarque.bera.test(data.pt)$p.value),p.method)[3]
@@ -82,7 +90,10 @@ if (round(lam[i],2)==0) sf<-rbind(sf,c(lam[i],sf.test(log(data))$statistic))
 }
 sflam<-sf[which.max(sf[,2]),1]
 
-data.sf<-((data^sflam)-1)/sflam
+
+if (sflam!=0) data.sf<-((data^sflam)-1)/sflam
+if (sflam==0) data.sf<-log(data)
+
 sw.pvalue_data.sf<-p.adjust(c(shapiro.test(data.sf)$p.value,sf.test(data.sf)$p.value,jarque.bera.test(data.sf)$p.value),p.method)[1]
 sf.pvalue_data.sf<-p.adjust(c(shapiro.test(data.sf)$p.value,sf.test(data.sf)$p.value,jarque.bera.test(data.sf)$p.value),p.method)[2]
 jb.pvalue_data.sf<-p.adjust(c(shapiro.test(data.sf)$p.value,sf.test(data.sf)$p.value,jarque.bera.test(data.sf)$p.value),p.method)[3]
@@ -97,7 +108,10 @@ if (round(lam[i],2)==0) lt<-rbind(lt,c(lam[i],lillie.test(log(data))$statistic))
 }
 ltlam<-lt[which.min(lt[,2]),1]
 
-data.lt<-((data^ltlam)-1)/ltlam
+
+if (ltlam!=0) data.lt<-((data^ltlam)-1)/ltlam
+if (ltlam==0) data.lt<-log(data)
+
 sw.pvalue_data.lt<-p.adjust(c(shapiro.test(data.lt)$p.value,sf.test(data.lt)$p.value,jarque.bera.test(data.lt)$p.value),p.method)[1]
 sf.pvalue_data.lt<-p.adjust(c(shapiro.test(data.lt)$p.value,sf.test(data.lt)$p.value,jarque.bera.test(data.lt)$p.value),p.method)[2]
 jb.pvalue_data.lt<-p.adjust(c(shapiro.test(data.lt)$p.value,sf.test(data.lt)$p.value,jarque.bera.test(data.lt)$p.value),p.method)[3]
@@ -112,7 +126,10 @@ if (round(lam[i],2)==0) jb<-rbind(jb,c(lam[i],jarque.bera.test(log(data))$statis
 }
 jblam<-jb[which.min(jb[,2]),1]
 
-data.jb<-((data^jblam)-1)/jblam
+
+if (jblam!=0) data.jb<-((data^jblam)-1)/jblam
+if (jblam==0) data.jb<-log(data)
+
 sw.pvalue_data.jb<-p.adjust(c(shapiro.test(data.jb)$p.value,sf.test(data.jb)$p.value,jarque.bera.test(data.jb)$p.value),p.method)[1]
 sf.pvalue_data.jb<-p.adjust(c(shapiro.test(data.jb)$p.value,sf.test(data.jb)$p.value,jarque.bera.test(data.jb)$p.value),p.method)[2]
 jb.pvalue_data.jb<-p.adjust(c(shapiro.test(data.jb)$p.value,sf.test(data.jb)$p.value,jarque.bera.test(data.jb)$p.value),p.method)[3]
@@ -179,7 +196,12 @@ if (aclam==max(lam)) stop("Enlarge the range of the lambda in a positive directi
 if (aclam==min(lam)) stop("Enlarge the range of the lambda in a negative direction")
 
 
-data.ac<-((data^aclam2)-1)/aclam2
+
+
+
+if (aclam2!=0) data.ac<-((data^aclam2)-1)/aclam2
+if (aclam2==0) data.ac<-log(data)
+
 sw.pvalue_data.ac<-p.adjust(c(shapiro.test(data.ac)$p.value,sf.test(data.ac)$p.value,jarque.bera.test(data.ac)$p.value),p.method)[1]
 sf.pvalue_data.ac<-p.adjust(c(shapiro.test(data.ac)$p.value,sf.test(data.ac)$p.value,jarque.bera.test(data.ac)$p.value),p.method)[2]
 jb.pvalue_data.ac<-p.adjust(c(shapiro.test(data.ac)$p.value,sf.test(data.ac)$p.value,jarque.bera.test(data.ac)$p.value),p.method)[3]
@@ -225,7 +247,11 @@ if (swlam==max(lam)) stop("Enlarge the range of the lambda in a positive directi
 if (swlam==min(lam)) stop("Enlarge the range of the lambda in a negative direction")
 
 
-data.sw<-((data^swlam)-1)/swlam
+
+if (swlam!=0) data.sw<-((data^swlam)-1)/swlam
+if (swlam==0) data.sw<-log(data)
+
+
 sw.pvalue_data.sw<-p.adjust(c(shapiro.test(data.sw)$p.value,sf.test(data.sw)$p.value,jarque.bera.test(data.sw)$p.value),p.method)[1]
 sf.pvalue_data.sw<-p.adjust(c(shapiro.test(data.sw)$p.value,sf.test(data.sw)$p.value,jarque.bera.test(data.sw)$p.value),p.method)[2]
 jb.pvalue_data.sw<-p.adjust(c(shapiro.test(data.sw)$p.value,sf.test(data.sw)$p.value,jarque.bera.test(data.sw)$p.value),p.method)[3]
@@ -245,7 +271,7 @@ out
 }
 
 else if (method=="ad") {
-library(nortest)
+
 ad<-NULL
 for (i in 1:length(lam)){
 if (round(lam[i],2)!=0) ad<-rbind(ad,c(lam[i],ad.test((data**(lam[i])-1)/(lam[i]))$statistic))
@@ -265,7 +291,9 @@ if (adlam==max(lam)) stop("Enlarge the range of the lambda in a positive directi
 if (adlam==min(lam)) stop("Enlarge the range of the lambda in a negative direction")
 
 
-data.ad<-((data^adlam)-1)/adlam
+if (adlam!=0) data.ad<-((data^adlam)-1)/adlam
+if (adlam==0) data.ad<-log(data)
+
 sw.pvalue_data.ad<-p.adjust(c(shapiro.test(data.ad)$p.value,sf.test(data.ad)$p.value,jarque.bera.test(data.ad)$p.value),p.method)[1]
 sf.pvalue_data.ad<-p.adjust(c(shapiro.test(data.ad)$p.value,sf.test(data.ad)$p.value,jarque.bera.test(data.ad)$p.value),p.method)[2]
 jb.pvalue_data.ad<-p.adjust(c(shapiro.test(data.ad)$p.value,sf.test(data.ad)$p.value,jarque.bera.test(data.ad)$p.value),p.method)[3]
@@ -285,7 +313,7 @@ out
 }
 
 else if (method=="cvm") {
-library(nortest)
+
 # Cramer Von-Mises - in nortest
 cvm<-NULL
 for (i in 1:length(lam)){
@@ -307,7 +335,9 @@ if (cvmlam==max(lam)) stop("Enlarge the range of the lambda in a positive direct
 if (cvmlam==min(lam)) stop("Enlarge the range of the lambda in a negative direction")
 
 
-data.cvm<-((data^cvmlam)-1)/cvmlam
+if (cvmlam!=0) data.cvm<-((data^cvmlam)-1)/cvmlam
+if (cvmlam==0) data.cvm<-log(data)
+
 sw.pvalue_data.cvm<-p.adjust(c(shapiro.test(data.cvm)$p.value,sf.test(data.cvm)$p.value,jarque.bera.test(data.cvm)$p.value),p.method)[1]
 sf.pvalue_data.cvm<-p.adjust(c(shapiro.test(data.cvm)$p.value,sf.test(data.cvm)$p.value,jarque.bera.test(data.cvm)$p.value),p.method)[2]
 jb.pvalue_data.cvm<-p.adjust(c(shapiro.test(data.cvm)$p.value,sf.test(data.cvm)$p.value,jarque.bera.test(data.cvm)$p.value),p.method)[3]
@@ -327,7 +357,7 @@ out
 }
 
 else if (method=="pt") {
-library(nortest)
+
 pt<-NULL
 for (i in 1:length(lam)){
 if (round(lam[i],2)!=0) pt<-rbind(pt,c(lam[i],pearson.test((data**(lam[i])-1)/(lam[i]))$statistic))
@@ -347,7 +377,9 @@ if (ptlam==max(lam)) stop("Enlarge the range of the lambda in a positive directi
 if (ptlam==min(lam)) stop("Enlarge the range of the lambda in a negative direction")
 
 
-data.pt<-((data^ptlam)-1)/ptlam
+if (ptlam!=0) data.pt<-((data^ptlam)-1)/ptlam
+if (ptlam==0) data.pt<-log(data)
+
 sw.pvalue_data.pt<-p.adjust(c(shapiro.test(data.pt)$p.value,sf.test(data.pt)$p.value,jarque.bera.test(data.pt)$p.value),p.method)[1]
 sf.pvalue_data.pt<-p.adjust(c(shapiro.test(data.pt)$p.value,sf.test(data.pt)$p.value,jarque.bera.test(data.pt)$p.value),p.method)[2]
 jb.pvalue_data.pt<-p.adjust(c(shapiro.test(data.pt)$p.value,sf.test(data.pt)$p.value,jarque.bera.test(data.pt)$p.value),p.method)[3]
@@ -368,7 +400,7 @@ out
 }
 
 else if (method=="sf") {
-library(nortest)
+
 sf<-NULL
 for (i in 1:length(lam)){
 if (round(lam[i],2)!=0) sf<-rbind(sf,c(lam[i],sf.test((data**(lam[i])-1)/(lam[i]))$statistic))
@@ -388,7 +420,10 @@ if (sflam==max(lam)) stop("Enlarge the range of the lambda in a positive directi
 if (sflam==min(lam)) stop("Enlarge the range of the lambda in a negative direction")
 
 
-data.sf<-((data^sflam)-1)/sflam
+if (sflam!=0) data.sf<-((data^sflam)-1)/sflam
+if (sflam==0) data.sf<-log(data)
+
+
 sw.pvalue_data.sf<-p.adjust(c(shapiro.test(data.sf)$p.value,sf.test(data.sf)$p.value,jarque.bera.test(data.sf)$p.value),p.method)[1]
 sf.pvalue_data.sf<-p.adjust(c(shapiro.test(data.sf)$p.value,sf.test(data.sf)$p.value,jarque.bera.test(data.sf)$p.value),p.method)[2]
 jb.pvalue_data.sf<-p.adjust(c(shapiro.test(data.sf)$p.value,sf.test(data.sf)$p.value,jarque.bera.test(data.sf)$p.value),p.method)[3]
@@ -408,7 +443,7 @@ out
 }
 
 else if (method=="lt") {
-library(nortest)
+
 lt<-NULL
 for (i in 1:length(lam)){
 if (round(lam[i],2)!=0) lt<-rbind(lt,c(lam[i],lillie.test((data**(lam[i])-1)/(lam[i]))$statistic))
@@ -426,7 +461,10 @@ abline(v=ltlam,lty=2)
 if (ltlam==max(lam)) stop("Enlarge the range of the lambda in a positive direction")
 if (ltlam==min(lam)) stop("Enlarge the range of the lambda in a negative direction")
 
-data.lt<-((data^ltlam)-1)/ltlam
+
+if (ltlam!=0) data.lt<-((data^ltlam)-1)/ltlam
+if (ltlam==0) data.lt<-log(data)
+
 sw.pvalue_data.lt<-p.adjust(c(shapiro.test(data.lt)$p.value,sf.test(data.lt)$p.value,jarque.bera.test(data.lt)$p.value),p.method)[1]
 sf.pvalue_data.lt<-p.adjust(c(shapiro.test(data.lt)$p.value,sf.test(data.lt)$p.value,jarque.bera.test(data.lt)$p.value),p.method)[2]
 jb.pvalue_data.lt<-p.adjust(c(shapiro.test(data.lt)$p.value,sf.test(data.lt)$p.value,jarque.bera.test(data.lt)$p.value),p.method)[3]
@@ -446,7 +484,7 @@ out
 }
 
 else if (method=="jb") {
-library(tseries)
+
 jb<-NULL
 for (i in 1:length(lam)){
 if (round(lam[i],2)!=0) jb<-rbind(jb,c(lam[i],jarque.bera.test((data**(lam[i])-1)/(lam[i]))$statistic))
@@ -465,7 +503,10 @@ abline(v=jblam,lty=2)
 if (jblam==max(lam)) stop("Enlarge the range of the lambda in a positive direction")
 if (jblam==min(lam)) stop("Enlarge the range of the lambda in a negative direction")
 
-data.jb<-((data^jblam)-1)/jblam
+
+if (jblam!=0) data.jb<-((data^jblam)-1)/jblam
+if (jblam==0) data.jb<-log(data)
+
 sw.pvalue_data.jb<-p.adjust(c(shapiro.test(data.jb)$p.value,sf.test(data.jb)$p.value,jarque.bera.test(data.jb)$p.value),p.method)[1]
 sf.pvalue_data.jb<-p.adjust(c(shapiro.test(data.jb)$p.value,sf.test(data.jb)$p.value,jarque.bera.test(data.jb)$p.value),p.method)[2]
 jb.pvalue_data.jb<-p.adjust(c(shapiro.test(data.jb)$p.value,sf.test(data.jb)$p.value,jarque.bera.test(data.jb)$p.value),p.method)[3]
@@ -488,7 +529,7 @@ else if (method=="ac") {
 aclam1<-NULL
 
 for (t in 1:rep) {
-library(MASS)
+
 ac<-rnorm(length(data),0,100)
 lm1<-glm(data~ac,family=gaussian)
 bc1<-boxcox(lm1,lam,plotit=FALSE)
@@ -506,7 +547,10 @@ aclam2<-mean(aclam1)
 if (aclam2==max(lam)) stop("Enlarge the range of the lambda in a positive direction")
 if (aclam2==min(lam)) stop("Enlarge the range of the lambda in a negative direction")
 
-data.ac<-((data^aclam2)-1)/aclam2
+
+if (aclam2!=0) data.ac<-((data^aclam2)-1)/aclam2
+if (aclam2==0) data.ac<-log(data)
+
 sw.pvalue_data.ac<-p.adjust(c(shapiro.test(data.ac)$p.value,sf.test(data.ac)$p.value,jarque.bera.test(data.ac)$p.value),p.method)[1]
 sf.pvalue_data.ac<-p.adjust(c(shapiro.test(data.ac)$p.value,sf.test(data.ac)$p.value,jarque.bera.test(data.ac)$p.value),p.method)[2]
 jb.pvalue_data.ac<-p.adjust(c(shapiro.test(data.ac)$p.value,sf.test(data.ac)$p.value,jarque.bera.test(data.ac)$p.value),p.method)[3]
