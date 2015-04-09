@@ -221,7 +221,6 @@ result[4,]<-c(jb.pvalue_data.sw,jb.pvalue_data.ad,jb.pvalue_data.cvm,jb.pvalue_d
 
 out<-list()
 out$title<-"Implementation of Box-Cox Power Transformation when No Covariate Is Available"
-out$version<-"Version 1.0"
 out$method="All"
 out$date<-date()
 out$result<-result
@@ -263,7 +262,6 @@ result[,1]<-c(swlam,sw.pvalue_data.sw,sf.pvalue_data.sw,jb.pvalue_data.sw)
 
 out<-list()
 out$title<-"Implementation of Box-Cox Power Transformation when No Covariate Is Available"
-out$version<-"Version 1.0"
 out$method="Shapiro-Wilk"
 out$date<-date()
 out$result<-result
@@ -305,7 +303,6 @@ result[,1]<-c(adlam,sw.pvalue_data.ad,sf.pvalue_data.ad,jb.pvalue_data.ad)
 
 out<-list()
 out$title<-"Implementation of Box-Cox Power Transformation when No Covariate Is Available"
-out$version<-"Version 1.0"
 out$method="Anderson-Darling"
 out$date<-date()
 out$result<-result
@@ -349,7 +346,6 @@ result[,1]<-c(cvmlam,sw.pvalue_data.cvm,sf.pvalue_data.cvm,jb.pvalue_data.cvm)
 
 out<-list()
 out$title<-"Implementation of Box-Cox Power Transformation when No Covariate Is Available"
-out$version<-"Version 1.0"
 out$method="Cramer-von Mises"
 out$date<-date()
 out$result<-result
@@ -392,7 +388,6 @@ result[,1]<-c(ptlam,sw.pvalue_data.pt,sf.pvalue_data.pt,jb.pvalue_data.pt)
 
 out<-list()
 out$title<-"Implementation of Box-Cox Power Transformation when No Covariate Is Available"
-out$version<-"Version 1.0"
 out$method="Pearson Chi-Square"
 out$date<-date()
 out$result<-result
@@ -435,7 +430,6 @@ result[,1]<-c(sflam,sw.pvalue_data.sf,sf.pvalue_data.sf,jb.pvalue_data.sf)
 
 out<-list()
 out$title<-"Implementation of Box-Cox Power Transformation when No Covariate Is Available"
-out$version<-"Version 1.0"
 out$method="Shapiro-Francia"
 out$date<-date()
 out$result<-result
@@ -476,7 +470,6 @@ result[,1]<-c(ltlam,sw.pvalue_data.lt,sf.pvalue_data.lt,jb.pvalue_data.lt)
 
 out<-list()
 out$title<-"Implementation of Box-Cox Power Transformation when No Covariate Is Available"
-out$version<-"Version 1.0"
 out$method="Lilliefors"
 out$date<-date()
 out$result<-result
@@ -518,7 +511,6 @@ result[,1]<-c(jblam,sw.pvalue_data.jb,sf.pvalue_data.jb,jb.pvalue_data.jb)
 
 out<-list()
 out$title<-"Implementation of Box-Cox Power Transformation when No Covariate Is Available"
-out$version<-"Version 1.0"
 out$method="Jarque-Bera"
 out$date<-date()
 out$result<-result
@@ -561,7 +553,6 @@ result[,1]<-c(aclam2,sw.pvalue_data.ac,sf.pvalue_data.ac,jb.pvalue_data.ac)
 
 out<-list()
 out$title<-"Implementation of Box-Cox Power Transformation when No Covariate Is Available"
-out$version<-"Version 1.0"
 out$method="Artifical Covariate"
 out$date<-date()
 out$result<-result

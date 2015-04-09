@@ -6,6 +6,11 @@ A Function to Estimate Box-Cox Power Transformation Parameter via Normality Test
 }
 \description{
 \code{boxcoxnc} utilizes seven different normality tests and artifical covariate method to estimate Box-Cox power transformation parameter and provides graphical analysis
+
+Asar, O., Ilk, O., Dag, O. (2015). Estimating Box-Cox Power Transformation Parameter via Goodness of Fit Tests. Accepted to be published in \emph{Communications in Statistics - Simulation and Computation}.
+
+Dag, O., Asar, O., Ilk, O. (2014). A Methodology to Implement Box-Cox Transformation When No Covariate is Available. \emph{Communications in Statistics - Simulation and Computation}, \bold{43:7}, 1740--1759.
+
 }
 \usage{boxcoxnc(data, method="all", lam=seq(-2,2,0.01), plotit=TRUE, rep=30, p.method="BY")}
 
@@ -26,7 +31,7 @@ A Function to Estimate Box-Cox Power Transformation Parameter via Normality Test
 Returns a matrix of output with the results of seven different normality tests and artifical covariate method. The first row of the matrix corresponds to the related estimates of lambda. The subsequent rows correspond to the p-values of different normality tests for each estimates of lambda.
 }
 \references{
-Asar, O., Ilk, O., Dag, O. (2014). Estimating Box-Cox Power Transformation Parameter via Goodness of Fit Tests. Submitted.
+Asar, O., Ilk, O., Dag, O. (2015). Estimating Box-Cox Power Transformation Parameter via Goodness of Fit Tests. Accepted to be published in \emph{Communications in Statistics - Simulation and Computation}.
 
 Box, G. E. P., Cox, D. R. (1964). An Analysis of Transformations (with discussion). \emph{Journal of the Royal Statistical Society, Series B (Methodological)}, \bold{26}, 211--252.
 
@@ -44,9 +49,7 @@ Venables, W. N., Ripley, B. D. (2002). \emph{Modern Applied Statistics with S 4t
 \author{
 Osman Dag, Ozgur Asar, Ozlem Ilk
 }
-\note{
-This is the version 1.4 of this user documentation file.
-}
+
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
@@ -62,5 +65,5 @@ boxcoxnc(textile[,1])$result[1,1]
 
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ power transformation }
+\keyword{functions}
 

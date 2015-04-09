@@ -1,3 +1,11 @@
-export(boxcoxnc)
-import(MASS, nortest, tseries)
+export(boxcoxnc,boxcoxfr)
+importFrom(MASS, boxcox)
+importFrom(nortest, ad.test)
+importFrom(nortest, cvm.test)
+importFrom(nortest, lillie.test)
+importFrom(nortest, pearson.test)
+importFrom(nortest, sf.test)
+importFrom(tseries, jarque.bera.test)
+
+
 

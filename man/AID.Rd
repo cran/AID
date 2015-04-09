@@ -1,19 +1,19 @@
-\name{AID}
-\alias{AID}
-\alias{AID}
+\name{AID-package}
+\alias{AID-package}
+\alias{AID-package}
 \docType{package}
 \title{
-An R Package to Estimate Box-Cox Power Transformation Parameter 
+Estimation of Box-Cox Power Transformation Parameter 
 }
 \description{
-Includes a function to estimate the power transformation parameter and some datasets
+Power transformation parameter is estimated for different purposes.
 }
 \details{
 \tabular{ll}{
 Package: \tab AID\cr
 Type: \tab Package\cr
-Version: \tab 1.4\cr
-Date: \tab 2014-01-21\cr
+Version: \tab 1.5\cr
+Date: \tab 2015-04-09\cr
 License: \tab GPL (>=2)\cr
 }
 }
