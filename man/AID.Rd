@@ -12,8 +12,8 @@ Power transformation parameter is estimated for different purposes.
 \tabular{ll}{
 Package: \tab AID\cr
 Type: \tab Package\cr
-Version: \tab 1.5\cr
-Date: \tab 2015-04-09\cr
+Version: \tab 1.6\cr
+Date: \tab 2016-06-02\cr
 License: \tab GPL (>=2)\cr
 }
 }

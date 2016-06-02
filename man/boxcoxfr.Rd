@@ -17,7 +17,7 @@ A Function to Estimate Box-Cox Transformation Parameter for Comparing Two or Mor
   \item{x}{a vector or factor object which gives the group for the corresponding elements of y.}
   \item{option}{a character string to select the desired option for the objective of transformation. "norm" and "var" are the options which search for a transformation to satisfy the normality of groups and the homogenity of variances, respectively. "both" is the option which searches for a transformation to satisfy both the normality of groups and the homogenity of variances. Default is set to "both".}
   \item{lam}{a vector which includes the sequence of feasible lambda values. Default is set to (-2, 2) with increment 0.02.} 
-  \item{alpha}{the significance level for the construction of feasible region.} 
+  \item{alpha}{the significance level for the construction of feasible region. Default is set to 0.05. If alpha = 0, it returns the MLE of transformation parameter.} 
 
 }
 
@@ -52,6 +52,11 @@ Osman Dag, Ozlem Ilk
 
 
 \examples{
+
+data(AADT)
+attach(AADT)
+boxcoxfr(aadt, class, lam = seq(-3, 3, 0.01))
+
 
 data = rnorm(120, 10, 1)
 factor = rep(c("X", "Y", "Z"), each = 40)

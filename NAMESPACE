@@ -1,11 +1,9 @@
 export(boxcoxnc,boxcoxfr)
-importFrom(MASS, boxcox)
-importFrom(nortest, ad.test)
-importFrom(nortest, cvm.test)
-importFrom(nortest, lillie.test)
-importFrom(nortest, pearson.test)
-importFrom(nortest, sf.test)
-importFrom(tseries, jarque.bera.test)
+importFrom("MASS", boxcox)
+importFrom("nortest", ad.test, cvm.test, lillie.test, pearson.test, sf.test)
+importFrom("tseries", jarque.bera.test)
+importFrom("graphics", abline, par, plot, title)
+importFrom("stats", bartlett.test, gaussian, glm, p.adjust, rnorm, shapiro.test)
 
 
 

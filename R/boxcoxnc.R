@@ -1,5 +1,5 @@
 boxcoxnc <-
-function(data,method="all",lam=seq(-2,2,0.01),plotit = TRUE,rep=30,p.method="BY")
+function(data,method="all",lam=seq(-2,2,0.01),plotit = TRUE,rep=30,p.method="none")
 {
 
 

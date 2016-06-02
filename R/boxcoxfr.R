@@ -119,13 +119,28 @@ colnames(store2)=c("K-squared","df","p-value")
 rownames(store2)=c("")
 
 
+if(alpha==0){
+method="MLE"
+}else{
+method="MLEFR"
+}
+
+
 out <- list()
-out$method <- "MLEFR"
+out$method <-method
 out$date <- date()
 out$lambda.hat <-lam
+
+if(option=="both"){
 out$shapiro.test <- store
 out$bartlett.test <- store2
-
+}
+if(option=="var"){
+out$bartlett.test <- store2
+}
+if(option=="nor"){
+out$shapiro.test <- store
+}
 
 out
 

@@ -7,21 +7,22 @@ A Function to Estimate Box-Cox Power Transformation Parameter via Normality Test
 \description{
 \code{boxcoxnc} utilizes seven different normality tests and artifical covariate method to estimate Box-Cox power transformation parameter and provides graphical analysis
 
-Asar, O., Ilk, O., Dag, O. (2015). Estimating Box-Cox Power Transformation Parameter via Goodness of Fit Tests. Accepted to be published in \emph{Communications in Statistics - Simulation and Computation}.
+Asar, O., Ilk, O., Dag, O. (2014). Estimating Box-Cox Power Transformation Parameter via Goodness of Fit Tests. \emph{Communications in Statistics - Simulation and Computation}, DOI:10.1080/ 03610918.2014.957839.
 
 Dag, O., Asar, O., Ilk, O. (2014). A Methodology to Implement Box-Cox Transformation When No Covariate is Available. \emph{Communications in Statistics - Simulation and Computation}, \bold{43:7}, 1740--1759.
 
 }
-\usage{boxcoxnc(data, method="all", lam=seq(-2,2,0.01), plotit=TRUE, rep=30, p.method="BY")}
+\usage{boxcoxnc(data, method = "all", lam = seq(-2,2,0.01), plotit = TRUE, rep = 30, 
+p.method = "none")}
 
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{data}{is a vector, matrix for univariate dataset}
+  \item{data}{is a vector, matrix for univariate dataset.}
   \item{method}{expects a character string to select the desired method to be used to estimate Box-Cox transformation parameter. To use Shapiro-Wilk test method should be set to "sw". For method = "ad", boxcoxnc function uses Anderson-Darling test to estimste Box-Cox transformation parameter. Similarly, method should be set to "cvm", "pt", "sf", "lt", "jb", "ac" to use Cramer-von Mises, Pearson Chi-square, Shapiro-Francia, Lilliefors, Jarque-Bera tests and artificial covariate method, respectively. To use all the methods at the same time, default is set to method = "all".}
-  \item{lam}{is a vector which includes the sequence of candidate lambda values. Default is set to (-2,2) with increment 0.01} 
-  \item{plotit}{plots normality test statistic vs lambda for methods utilizing normality tests. It also plots log-likelihood vs lambda for artificial covariate method. Defaults plotit = TRUE} 
-  \item{rep}{is an integer which denotes the replication number for artificial covariate method. Default is set to 30}
-   \item{p.method}{expects a character string which defines the method to adjust the p-values. Default is set to "BY". p.method is same with the "method" in p.adjust documentation. See the documentation of p.adjust for other possible choices of methods and details.}
+  \item{lam}{is a vector which includes the sequence of candidate lambda values. Default is set to (-2,2) with increment 0.01.} 
+  \item{plotit}{plots normality test statistic vs lambda for methods utilizing normality tests. It also plots log-likelihood vs lambda for artificial covariate method. Defaults plotit = TRUE.} 
+  \item{rep}{is an integer which denotes the replication number for artificial covariate method. Default is set to 30.}
+   \item{p.method}{expects a character string which defines the method to adjust the p-values of normality tests. Default is set to "none". p.method is same with the "method" in p.adjust documentation. See the documentation of \code{\link[stats]{p.adjust}} for other possible choices of methods and details.}
 }
 
 %\details{
@@ -31,7 +32,7 @@ Dag, O., Asar, O., Ilk, O. (2014). A Methodology to Implement Box-Cox Transforma
 Returns a matrix of output with the results of seven different normality tests and artifical covariate method. The first row of the matrix corresponds to the related estimates of lambda. The subsequent rows correspond to the p-values of different normality tests for each estimates of lambda.
 }
 \references{
-Asar, O., Ilk, O., Dag, O. (2015). Estimating Box-Cox Power Transformation Parameter via Goodness of Fit Tests. Accepted to be published in \emph{Communications in Statistics - Simulation and Computation}.
+Asar, O., Ilk, O., Dag, O. (2014). Estimating Box-Cox Power Transformation Parameter via Goodness of Fit Tests. \emph{Communications in Statistics - Simulation and Computation}, DOI:10.1080/ 03610918.2014.957839.
 
 Box, G. E. P., Cox, D. R. (1964). An Analysis of Transformations (with discussion). \emph{Journal of the Royal Statistical Society, Series B (Methodological)}, \bold{26}, 211--252.
 
