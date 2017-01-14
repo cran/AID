@@ -1,5 +1,7 @@
+boxcoxfr <- function(y, x, option="both",lam = seq(-3,3,0.01), tau = 0.05, alpha = 0.05, verbose = TRUE){
 
-boxcoxfr <- function(y, x, option="both",lam = seq(-2,2,0.02), alpha = 0.05){
+dname1<-deparse(substitute(y))
+dname2<-deparse(substitute(x))
 
 
 x=factor(x)
@@ -38,8 +40,8 @@ stor_w=rbind(stor_w,c(lam[j],w$statistic,w$p))
 
 } #closing for loop
 
-lam=stor_w[which(stor_w[,3]>=alpha),1]
-if (length(lam)==0) {stop("Feasible region is null set. No solution.")}
+lam=stor_w[which(stor_w[,3]>=tau),1]
+if (length(lam)==0) {stop("Feasible region is null set. No solution. \n  Try to enlarge the range of feasible lambda values, lam. \n  Try to decrease feasible region parameter, tau.")}
 stor_w=NULL
 
 } #closing for loop
@@ -63,7 +65,7 @@ lt=bartlett.test(log(y),x)
 stor_w=rbind(stor_w,c(lam[j],lt$statistic,lt$p.value))
 }
 }
-lam=stor_w[which(stor_w[,3]>=alpha),1]
+lam=stor_w[which(stor_w[,3]>=tau),1]
 if (length(lam)==0) {stop("Feasible region is null set. No solution.")}
 }
 
@@ -82,9 +84,7 @@ lam=van$x[which.max(van$y)]
 ################################
 
 
-
-
-store=NULL
+stor=NULL
 for(i in 1:k){
 
 if(lam!=0){
@@ -95,12 +95,16 @@ kk=shapiro.test((y[which(x==(levels(x)[i]))]^lam-1)/lam)
 kk=shapiro.test(log(y[which(x==(levels(x)[i]))]))
 }
 
-store=rbind(store,c(kk$stat,kk$p))
+stor=c(stor,kk$p)
 
 } 
 
-rownames(store)=invisible(paste("Group",levels(x)))
-colnames(store)=c("W","p-value")
+store = data.frame(matrix(NA, nrow = k, ncol = 3))
+colnames(store) = c("Level", "p.value", "Normality")
+
+store$p.value=stor
+store$Normality = ifelse(store$p.value > alpha, "YES", "NO")
+store$Level=levels(x)
 
 
 
@@ -114,35 +118,59 @@ kk2=bartlett.test((y^lam-1)/lam,x)
 kk2=bartlett.test(log(y),x)
 }
 
-store2=matrix(c(kk2$statistic,kk2$parameter,kk2$p.value),1,3)
-colnames(store2)=c("K-squared","df","p-value")
-rownames(store2)=c("")
+store2 = data.frame(matrix(NA, nrow = 1, ncol = 3))
+colnames(store2) = c("Level","p.value", "Homogenity")
+
+store2$p.value=kk2$p.value
+store2$Homogenity= ifelse(store2$p.value > alpha, "YES", "NO")
+store2$Level="All"
 
 
-if(alpha==0){
+if(lam!=0){
+tf.data=(y^lam-1)/lam
+}else{
+tf.data=log(y)
+}
+
+
+
+if(tau==0){
 method="MLE"
 }else{
 method="MLEFR"
 }
 
+if (verbose){
+
+cat("\n"," Box-Cox Power Transformation", "\n", sep = " ")
+cat("------------------------------------------------------------", "\n", sep = " ")
+cat("  data :", dname1, "vs",dname2, "\n\n", sep = " ")
+cat("  lambda.hat :", lam, "\n\n", sep = " ")
+
+cat("\n"," Shapiro-Wilk Normality Test for Transformed Data", "\n", sep = " ")
+cat("----------------------------------------------------", "\n", sep = " ")
+print(store)
+
+cat("\n\n"," Bartlett's Homogenity Test for Transformed Data", "\n", sep = " ")
+cat("----------------------------------------------------", "\n", sep = " ")
+print(store2)
+
+cat("------------------------------------------------------------", "\n\n", sep = " ")
+}
+
 
 out <- list()
 out$method <-method
-out$date <- date()
 out$lambda.hat <-lam
+out$shapiro <- store
+out$bartlett <- store2
+out$tf.data <- tf.data
+out$x <- x
+out$date <- date()
 
-if(option=="both"){
-out$shapiro.test <- store
-out$bartlett.test <- store2
-}
-if(option=="var"){
-out$bartlett.test <- store2
-}
-if(option=="nor"){
-out$shapiro.test <- store
-}
-
-out
+invisible(out)
 
 }
 
+
+ 

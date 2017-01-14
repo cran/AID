@@ -2,37 +2,48 @@
 \alias{boxcoxnc}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-A Function to Estimate Box-Cox Power Transformation Parameter via Normality Tests and Artifical Covariate Method
+A Function to Estimate Box-Cox Power Transformation Parameter via Normality Tests and Artificial Covariate Method
 }
 \description{
-\code{boxcoxnc} utilizes seven different normality tests and artifical covariate method to estimate Box-Cox power transformation parameter and provides graphical analysis
+\code{boxcoxnc} utilizes seven different normality tests and artificial covariate method to estimate Box-Cox power transformation parameter and provides graphical analysis
 
-Asar, O., Ilk, O., Dag, O. (2014). Estimating Box-Cox Power Transformation Parameter via Goodness of Fit Tests. \emph{Communications in Statistics - Simulation and Computation}, DOI:10.1080/ 03610918.2014.957839.
+Asar, O., Ilk, O., Dag, O. (2017). Estimating Box-Cox Power Transformation Parameter via Goodness of Fit Tests. \emph{Communications in Statistics - Simulation and Computation}, \bold{46:1}, 91--105.
 
 Dag, O., Asar, O., Ilk, O. (2014). A Methodology to Implement Box-Cox Transformation When No Covariate is Available. \emph{Communications in Statistics - Simulation and Computation}, \bold{43:7}, 1740--1759.
 
 }
-\usage{boxcoxnc(data, method = "all", lam = seq(-2,2,0.01), plotit = TRUE, rep = 30, 
-p.method = "none")}
+\usage{boxcoxnc(data, method = "sw", lam = seq(-3,3,0.01), plotit = TRUE, alpha = 0.05, 
+  verbose = TRUE)}
 
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{data}{is a vector, matrix for univariate dataset.}
-  \item{method}{expects a character string to select the desired method to be used to estimate Box-Cox transformation parameter. To use Shapiro-Wilk test method should be set to "sw". For method = "ad", boxcoxnc function uses Anderson-Darling test to estimste Box-Cox transformation parameter. Similarly, method should be set to "cvm", "pt", "sf", "lt", "jb", "ac" to use Cramer-von Mises, Pearson Chi-square, Shapiro-Francia, Lilliefors, Jarque-Bera tests and artificial covariate method, respectively. To use all the methods at the same time, default is set to method = "all".}
-  \item{lam}{is a vector which includes the sequence of candidate lambda values. Default is set to (-2,2) with increment 0.01.} 
+  \item{data}{a numeric vector of data values.}
+  \item{method}{a character string to select the desired method to be used to estimate Box-Cox transformation parameter. To use Shapiro-Wilk test method should be set to "sw". For method = "ad", boxcoxnc function uses Anderson-Darling test to estimate Box-Cox transformation parameter. Similarly, method should be set to "cvm", "pt", "sf", "lt", "jb", "ac" to use Cramer-von Mises, Pearson Chi-square, Shapiro-Francia, Lilliefors, Jarque-Bera tests and artificial covariate method, respectively. Default is set to method = "sw".}
+  \item{lam}{a vector which includes the sequence of candidate lambda values. Default is set to (-3,3) with increment 0.01.} 
   \item{plotit}{plots normality test statistic vs lambda for methods utilizing normality tests. It also plots log-likelihood vs lambda for artificial covariate method. Defaults plotit = TRUE.} 
-  \item{rep}{is an integer which denotes the replication number for artificial covariate method. Default is set to 30.}
-   \item{p.method}{expects a character string which defines the method to adjust the p-values of normality tests. Default is set to "none". p.method is same with the "method" in p.adjust documentation. See the documentation of \code{\link[stats]{p.adjust}} for other possible choices of methods and details.}
+  \item{alpha}{the level of significance to check the normality after transformation. Default is set to alpha = 0.05.}
+  \item{verbose}{a logical for printing output to R console.}
+
 }
 
 %\details{
 %%  ~~ If necessary, more details than the description above ~~
 %}
 \value{
-Returns a matrix of output with the results of seven different normality tests and artifical covariate method. The first row of the matrix corresponds to the related estimates of lambda. The subsequent rows correspond to the p-values of different normality tests for each estimates of lambda.
+Returns a list containing following elements:
+
+\item{title}{title of the method}
+\item{method}{method preferred to estimate Box-Cox transformation parameter}
+\item{lambda.hat}{estimate of Box-Cox Power transformation parameter based on corresponding method}
+\item{p.value}{p.value of normality test for transformed data based on specified normality test in method. For artificial covariate method, p.value is obtained by Shapiro-Wilk test for transformed data}
+\item{tf.data}{transformed data set}
+\item{date}{date at which the function is used}
+
+
 }
 \references{
-Asar, O., Ilk, O., Dag, O. (2014). Estimating Box-Cox Power Transformation Parameter via Goodness of Fit Tests. \emph{Communications in Statistics - Simulation and Computation}, DOI:10.1080/ 03610918.2014.957839.
+Asar, O., Ilk, O., Dag, O. (2017). Estimating Box-Cox Power Transformation Parameter via Goodness of Fit Tests. \emph{Communications in Statistics - Simulation and Computation}, \bold{46:1}, 91--105.
+
 
 Box, G. E. P., Cox, D. R. (1964). An Analysis of Transformations (with discussion). \emph{Journal of the Royal Statistical Society, Series B (Methodological)}, \bold{26}, 211--252.
 
@@ -60,8 +71,16 @@ Osman Dag, Ozgur Asar, Ozlem Ilk
 %}
 \examples{
 data(textile)
-boxcoxnc(textile[,1])
-boxcoxnc(textile[,1])$result[1,1]
+
+out=boxcoxnc(textile[,1], method = "sw")
+out$lambda.hat # the estimate of Box-Cox parameter based on Shapiro-Wilk test statistic 
+out$p.value # p.value of Shapiro-Wilk test for transformed data 
+out$tf.data # transformed data set
+
+out2=boxcoxnc(textile[,1], method = "sf")
+out2$lambda.hat # the estimate of Box-Cox parameter based on Shapiro-Francia test statistic
+out2$p.value # p.value of Shapiro-Francia test for transformed data 
+out2$tf.data # transformed data set
 }
 
 % Add one or more standard keywords, see file 'KEYWORDS' in the

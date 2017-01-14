@@ -1,0 +1,44 @@
+citHeader("To cite AID in publications use:")
+
+citEntry(entry="article",
+  title  = "A Methodology to Implement Box-Cox Transformation When No Covariate is Available.",
+  author = personList(as.person("O. Dag"),as.person("O. Asar"), as.person("O. Ilk")),
+  journal = "Communications in Statistics - Simulation and Computation",
+  year = "2014",
+  volume = "43",
+  number = "7",
+  pages = "1740-1759",
+  url = "http://www.tandfonline.com/doi/abs/10.1080/03610918.2012.744042",
+  textVersion = paste("Dag, O., Asar, O., Ilk, O. (2014).",
+                      "A Methodology to Implement Box-Cox Transformation When No Covariate is Available.",
+                      "Communications in Statistics - Simulation and Computation,  43:7, 1740-1759."))
+
+
+citEntry(entry="article",
+  title  = "Estimating Box-Cox Power Transformation Parameter Via Goodness-of-Fit Tests.",
+  author = personList(as.person("O. Asar"),as.person("O. Ilk"), as.person("O. Dag")),
+  journal = "Communications in Statistics - Simulation and Computation",
+  year = "2017",
+  volume = "46",
+  number = "1",
+  pages = "91-105",
+  url = "http://www.tandfonline.com/doi/abs/10.1080/03610918.2014.957839",
+  textVersion = paste("Asar, O., Ilk, O., Dag, O. (2017).",
+                      "Estimating Box-Cox Power Transformation Parameter Via Goodness-of-Fit Tests.",
+                      "Communications in Statistics - Simulation and Computation,  46:1, 91-105."))
+
+
+citEntry(entry="article",
+  title  = "An Algorithm for Estimating Box-Cox Transformation Parameter in ANOVA.",
+  author = personList(as.person("O. Dag"), 
+			     as.person("O. Ilk")),
+  journal = "Communications in Statistics - Simulation and Computation",
+  year = "2016",
+  volume = "8",
+  number = "1",
+  pages = "379-386",
+  url = "https://journal.r-project.org/archive/2016-1/yozgatligil-dag.pdf",
+  textVersion = paste("Dag, O., Ilk, O.",
+                      "An Algorithm for Estimating Box-Cox Transformation Parameter in ANOVA.",
+                      "Communications in Statistics - Simulation and Computation,  Accepted (June 16, 2016)."))
+
