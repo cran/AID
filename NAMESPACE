@@ -2,8 +2,5 @@ export(boxcoxnc,boxcoxfr)
 importFrom("MASS", boxcox)
 importFrom("nortest", ad.test, cvm.test, lillie.test, pearson.test, sf.test)
 importFrom("tseries", jarque.bera.test)
-importFrom("graphics", abline, par, plot, title)
-importFrom("stats", bartlett.test, gaussian, glm, rnorm, shapiro.test)
-
-
-
+importFrom("graphics", abline, par, plot, title, hist, lines)
+importFrom("stats", bartlett.test, gaussian, glm, rnorm, shapiro.test, density, qqline, qqnorm)

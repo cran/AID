@@ -66,7 +66,7 @@ stor_w=rbind(stor_w,c(lam[j],lt$statistic,lt$p.value))
 }
 }
 lam=stor_w[which(stor_w[,3]>=tau),1]
-if (length(lam)==0) {stop("Feasible region is null set. No solution.")}
+if (length(lam)==0) {stop("Feasible region is null set. No solution. \n  Try to enlarge the range of feasible lambda values, lam. \n  Try to decrease feasible region parameter, tau.")}
 }
 
 ##########
@@ -84,7 +84,7 @@ lam=van$x[which.max(van$y)]
 ################################
 
 
-stor=NULL
+stor1=stor2=NULL
 for(i in 1:k){
 
 if(lam!=0){
@@ -95,14 +95,15 @@ kk=shapiro.test((y[which(x==(levels(x)[i]))]^lam-1)/lam)
 kk=shapiro.test(log(y[which(x==(levels(x)[i]))]))
 }
 
-stor=c(stor,kk$p)
+stor1=c(stor1,kk$statistic)
+stor2=c(stor2,kk$p)
 
 } 
 
-store = data.frame(matrix(NA, nrow = k, ncol = 3))
-colnames(store) = c("Level", "p.value", "Normality")
-
-store$p.value=stor
+store = data.frame(matrix(NA, nrow = k, ncol = 4))
+colnames(store) = c("Level", "statistic", "p.value", "Normality")
+store$statistic=stor1
+store$p.value=stor2
 store$Normality = ifelse(store$p.value > alpha, "YES", "NO")
 store$Level=levels(x)
 
@@ -118,11 +119,11 @@ kk2=bartlett.test((y^lam-1)/lam,x)
 kk2=bartlett.test(log(y),x)
 }
 
-store2 = data.frame(matrix(NA, nrow = 1, ncol = 3))
-colnames(store2) = c("Level","p.value", "Homogenity")
-
+store2 = data.frame(matrix(NA, nrow = 1, ncol = 4))
+colnames(store2) = c("Level","statistic", "p.value", "Homogeneity")
+store2$statistic=kk2$statistic
 store2$p.value=kk2$p.value
-store2$Homogenity= ifelse(store2$p.value > alpha, "YES", "NO")
+store2$Homogeneity= ifelse(store2$p.value > alpha, "YES", "NO")
 store2$Level="All"
 
 
@@ -142,20 +143,20 @@ method="MLEFR"
 
 if (verbose){
 
-cat("\n"," Box-Cox Power Transformation", "\n", sep = " ")
-cat("------------------------------------------------------------", "\n", sep = " ")
-cat("  data :", dname1, "vs",dname2, "\n\n", sep = " ")
+cat("\n"," Box-Cox power transformation", "\n", sep = " ")
+cat("--------------------------------------------------------", "\n", sep = " ")
+cat("  data :", dname1, "and",dname2, "\n\n", sep = " ")
 cat("  lambda.hat :", lam, "\n\n", sep = " ")
 
-cat("\n"," Shapiro-Wilk Normality Test for Transformed Data", "\n", sep = " ")
+cat("\n"," Shapiro-Wilk normality test for transformed data", "\n", sep = " ")
 cat("----------------------------------------------------", "\n", sep = " ")
 print(store)
 
-cat("\n\n"," Bartlett's Homogenity Test for Transformed Data", "\n", sep = " ")
+cat("\n\n"," Bartlett's homogeneity test for transformed data", "\n", sep = " ")
 cat("----------------------------------------------------", "\n", sep = " ")
 print(store2)
 
-cat("------------------------------------------------------------", "\n\n", sep = " ")
+cat("--------------------------------------------------------", "\n\n", sep = " ")
 }
 
 
@@ -166,7 +167,6 @@ out$shapiro <- store
 out$bartlett <- store2
 out$tf.data <- tf.data
 out$x <- x
-out$date <- date()
 
 invisible(out)
 

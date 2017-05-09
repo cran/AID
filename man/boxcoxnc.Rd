@@ -2,7 +2,7 @@
 \alias{boxcoxnc}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-A Function to Estimate Box-Cox Power Transformation Parameter via Normality Tests and Artificial Covariate Method
+Box-Cox Transformation for Normality of a Univariate Variable
 }
 \description{
 \code{boxcoxnc} utilizes seven different normality tests and artificial covariate method to estimate Box-Cox power transformation parameter and provides graphical analysis
@@ -12,7 +12,7 @@ Asar, O., Ilk, O., Dag, O. (2017). Estimating Box-Cox Power Transformation Param
 Dag, O., Asar, O., Ilk, O. (2014). A Methodology to Implement Box-Cox Transformation When No Covariate is Available. \emph{Communications in Statistics - Simulation and Computation}, \bold{43:7}, 1740--1759.
 
 }
-\usage{boxcoxnc(data, method = "sw", lam = seq(-3,3,0.01), plotit = TRUE, alpha = 0.05, 
+\usage{boxcoxnc(data, method = "sw", lam = seq(-3,3,0.01), plot = TRUE, alpha = 0.05, 
   verbose = TRUE)}
 
 %- maybe also 'usage' for other objects documented here.
@@ -20,7 +20,7 @@ Dag, O., Asar, O., Ilk, O. (2014). A Methodology to Implement Box-Cox Transforma
   \item{data}{a numeric vector of data values.}
   \item{method}{a character string to select the desired method to be used to estimate Box-Cox transformation parameter. To use Shapiro-Wilk test method should be set to "sw". For method = "ad", boxcoxnc function uses Anderson-Darling test to estimate Box-Cox transformation parameter. Similarly, method should be set to "cvm", "pt", "sf", "lt", "jb", "ac" to use Cramer-von Mises, Pearson Chi-square, Shapiro-Francia, Lilliefors, Jarque-Bera tests and artificial covariate method, respectively. Default is set to method = "sw".}
   \item{lam}{a vector which includes the sequence of candidate lambda values. Default is set to (-3,3) with increment 0.01.} 
-  \item{plotit}{plots normality test statistic vs lambda for methods utilizing normality tests. It also plots log-likelihood vs lambda for artificial covariate method. Defaults plotit = TRUE.} 
+  \item{plot}{plots histogram and qqplot of raw and transformed data. Defaults plot = TRUE.} 
   \item{alpha}{the level of significance to check the normality after transformation. Default is set to alpha = 0.05.}
   \item{verbose}{a logical for printing output to R console.}
 
@@ -32,30 +32,21 @@ Dag, O., Asar, O., Ilk, O. (2014). A Methodology to Implement Box-Cox Transforma
 \value{
 Returns a list containing following elements:
 
-\item{title}{title of the method}
 \item{method}{method preferred to estimate Box-Cox transformation parameter}
 \item{lambda.hat}{estimate of Box-Cox Power transformation parameter based on corresponding method}
+\item{statistic}{statistic of normality test for transformed data based on specified normality test in method. For artificial covariate method, statistic is obtained by Shapiro-Wilk test for transformed data}
 \item{p.value}{p.value of normality test for transformed data based on specified normality test in method. For artificial covariate method, p.value is obtained by Shapiro-Wilk test for transformed data}
 \item{tf.data}{transformed data set}
-\item{date}{date at which the function is used}
 
 
 }
 \references{
 Asar, O., Ilk, O., Dag, O. (2017). Estimating Box-Cox Power Transformation Parameter via Goodness of Fit Tests. \emph{Communications in Statistics - Simulation and Computation}, \bold{46:1}, 91--105.
 
-
 Box, G. E. P., Cox, D. R. (1964). An Analysis of Transformations (with discussion). \emph{Journal of the Royal Statistical Society, Series B (Methodological)}, \bold{26}, 211--252.
 
 Dag, O., Asar, O., Ilk, O. (2014). A Methodology to Implement Box-Cox Transformation When No Covariate is Available. \emph{Communications in Statistics - Simulation and Computation}, \bold{43:7}, 1740--1759.
 
-Gross, J. (2012). nortest: Tests for Normality. R package version 1.0.
-
-Thode, H. C. (2002). \emph{Testing for Normality}. New York: Marcel Dekker.
-
-Trapletti, A., Hornik, K. (2012). tseries: Time Series Analysis and Computational Finance. R package version. 0.10-28.
-
-Venables, W. N., Ripley, B. D. (2002). \emph{Modern Applied Statistics with S 4th ed.}. New York: Springer.
 
 }
 \author{
@@ -72,12 +63,12 @@ Osman Dag, Ozgur Asar, Ozlem Ilk
 \examples{
 data(textile)
 
-out=boxcoxnc(textile[,1], method = "sw")
+out <- boxcoxnc(textile[,1], method = "sw")
 out$lambda.hat # the estimate of Box-Cox parameter based on Shapiro-Wilk test statistic 
 out$p.value # p.value of Shapiro-Wilk test for transformed data 
 out$tf.data # transformed data set
 
-out2=boxcoxnc(textile[,1], method = "sf")
+out2 <- boxcoxnc(textile[,1], method = "sf")
 out2$lambda.hat # the estimate of Box-Cox parameter based on Shapiro-Francia test statistic
 out2$p.value # p.value of Shapiro-Francia test for transformed data 
 out2$tf.data # transformed data set

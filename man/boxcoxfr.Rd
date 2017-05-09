@@ -2,7 +2,7 @@
 \alias{boxcoxfr}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-A Function to Estimate Box-Cox Transformation Parameter for Comparing Two or More Groups
+Box-Cox Transformation for One-Way Independent Groups Designs
 }
 \description{
 \code{boxcoxfr} estimates Box-Cox power transformation parameter. It is useful to use if the normality or/and the homogenity of variance is/are not satisfied while comparing two or more groups. While estimating transformation parameter, maximum likelihood estimation in feasible region (MLEFR) is used. MLEFR maximizes the likehood function in feasible region constructed by Shapiro-Wilk test and Bartlett's test. After transformation parameter is estimated, normality of groups and homogenity of variance are checked by Shapiro-Wilk test and Bartlett's test, respectively. 
@@ -40,7 +40,6 @@ Returns a list containing following elements:
 \item{bartlett}{a matrix which returns the test result for the homogenity of variance via Bartlett's test}
 \item{tf.data}{transformed data set}
 \item{x}{a factor object which gives the group for the corresponding elements of y}
-\item{date}{date at which the function is used}
 
 }
 
@@ -66,13 +65,13 @@ Osman Dag, Ozlem Ilk
 
 data(AADT)
 attach(AADT)
-out=boxcoxfr(aadt, class)
+out <- boxcoxfr(aadt, class)
 out$shapiro
 out$bartlett
 out$tf.data # transformed data set
 
-data = rnorm(120, 10, 1)
-factor = rep(c("X", "Y", "Z"), each = 40)
+data <- rnorm(120, 10, 1)
+factor <- rep(c("X", "Y", "Z"), each = 40)
 boxcoxfr(data, factor, lam = seq(-5, 5, 0.01), tau = 0.01, alpha = 0.01)
 
 }
