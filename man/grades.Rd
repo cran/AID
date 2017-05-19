@@ -24,8 +24,13 @@ Overall student grades for a class thaught by Dr. Ozlem Ilk
 %%  ~~ possibly secondary sources and usages ~~
 %%  }
 \examples{
+
+library(AID)
+
 data(grades)
 hist(grades[,1])
-boxcoxnc(grades[,1])
+out <- boxcoxnc(grades[,1])
+confInt(out, level = 0.95)
+
 }
 \keyword{datasets}

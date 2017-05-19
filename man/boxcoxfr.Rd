@@ -5,11 +5,9 @@
 Box-Cox Transformation for One-Way Independent Groups Designs
 }
 \description{
-\code{boxcoxfr} estimates Box-Cox power transformation parameter. It is useful to use if the normality or/and the homogenity of variance is/are not satisfied while comparing two or more groups. While estimating transformation parameter, maximum likelihood estimation in feasible region (MLEFR) is used. MLEFR maximizes the likehood function in feasible region constructed by Shapiro-Wilk test and Bartlett's test. After transformation parameter is estimated, normality of groups and homogenity of variance are checked by Shapiro-Wilk test and Bartlett's test, respectively. 
+\code{boxcoxfr} performs Box-Cox transformation for one-way independent groups designs. It is useful to use if the normality or/and the homogenity of variance is/are not satisfied while comparing two or more groups. 
 
-Dag, O., Ilk, O. An Algorithm for Estimating Box-Cox Transformation Parameter in ANOVA. \emph{Communications in Statistics - Simulation and Computation,  Accepted (June 16, 2016)}.
     
-
 }
 
 \usage{boxcoxfr(y, x, option = "both", lam = seq(-3, 3, 0.01), tau = 0.05, alpha = 0.05, 
@@ -26,32 +24,29 @@ Dag, O., Ilk, O. An Algorithm for Estimating Box-Cox Transformation Parameter in
   \item{verbose}{a logical for printing output to R console.}
 }
 
-%\details{
-%%  ~~ If necessary, more details than the description above ~~
-%}
+\details{
+Maximum likelihood estimation in feasible region (MLEFR) is used while estimating transformation parameter. MLEFR maximizes the likehood function in feasible region constructed by Shapiro-Wilk test and Bartlett's test. After transformation, normality of the data in each group and homogeneity of variance are assessed by Shapiro-Wilk test and Bartlett's test, respectively. 
+}
 
 
 \value{
-Returns a list containing following elements:
+A list with class "boxcoxfr" containing the following elements:
 
 \item{method}{method applied in the algorithm}
 \item{lambda.hat}{the estimated lambda}
 \item{shapiro}{a data frame which gives the test results for the normality of groups via Shapiro-Wilk test}
 \item{bartlett}{a matrix which returns the test result for the homogenity of variance via Bartlett's test}
+\item{alpha}{the level of significance to assess the assumptions.} 
 \item{tf.data}{transformed data set}
 \item{x}{a factor object which gives the group for the corresponding elements of y}
+\item{y.name}{variable name of y}
+\item{x.name}{variable name of x}
 
 }
 
 \references{
 
-Bartlett, M.S.(1937). Properties of Sufficiency and Statistical Tests. \emph{Proceedings of the Royal Society of London, Series A}, \bold{160}, 268-282. 
-
-Box, G.E.P., Cox, D.R. (1964). An Analysis of Transformations (with discussion).  \emph{Journal of The Royal Statistical Society, Series B (Methodological)}, \bold{26}, 211-252.
-
 Dag, O., Ilk, O. An Algorithm for Estimating Box-Cox Transformation Parameter in ANOVA. \emph{Communications in Statistics - Simulation and Computation,  Accepted (June 16, 2016)}.
-
-Shapiro, S.S., Wilk, M.B. (1965). An Analysis of Variance Test for Normality (Complete Samples). \emph{Biometrika}, \bold{52(3/4)}, 591-611.
 
 }
 
@@ -63,16 +58,22 @@ Osman Dag, Ozlem Ilk
 
 \examples{
 
+library(AID)
+
 data(AADT)
 attach(AADT)
 out <- boxcoxfr(aadt, class)
 out$shapiro
 out$bartlett
-out$tf.data # transformed data set
+out$tf.data
+confInt(out, level = 0.95)
+
 
 data <- rnorm(120, 10, 1)
 factor <- rep(c("X", "Y", "Z"), each = 40)
-boxcoxfr(data, factor, lam = seq(-5, 5, 0.01), tau = 0.01, alpha = 0.01)
+out <- boxcoxfr(data, factor, lam = seq(-5, 5, 0.01), tau = 0.01, alpha = 0.01)
+confInt(out, level = 0.95)
+
 
 }
 

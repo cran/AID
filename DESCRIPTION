@@ -1,15 +1,15 @@
 Package: AID
 Type: Package
-Title: Estimation of Box-Cox Power Transformation Parameter
-Version: 1.8
-Date: 2017-05-09
+Title: Box-Cox Power Transformation
+Version: 1.9
+Date: 2017-05-19
 Depends: R (>= 2.15.0)
-Imports: MASS, tseries, nortest, graphics, stats
+Imports: MASS, tseries, nortest, ggplot2, graphics, stats
 Author: Osman Dag [aut, cre], Ozgur Asar [aut], Ozlem Ilk [aut]
 Maintainer: Osman Dag <osman.dag@hacettepe.edu.tr>
-Description: Power transformation parameter is estimated for different purposes.
+Description: Box-Cox power transformation parameter is estimated for different purposes.
 License: GPL (>= 2)
 NeedsCompilation: no
-Packaged: 2017-05-09 11:13:50 UTC; osmandag
+Packaged: 2017-05-19 12:56:58 UTC; osmandag
 Repository: CRAN
-Date/Publication: 2017-05-09 14:15:28 UTC
+Date/Publication: 2017-05-19 12:20:30 UTC

@@ -24,8 +24,12 @@ Number of Cycles to Failure of Worsted Yarn
 Box, G. E. P., Cox, D. R. (1964). An Analysis of Transformations (with discussion). \emph{Journal of the Royal Statistical Society, Series B (Methodological)}, \bold{26}, 211--252.
 }
 \examples{
+
+library(AID)
+
 data(textile)
 hist(textile[,1])
-boxcoxnc(textile[,1])
+out <- boxcoxnc(textile[,1])
+confInt(out)
 }
 \keyword{datasets}

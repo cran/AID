@@ -19,7 +19,6 @@ boxcoxnc <-
       
       pred.lamb<-sw[which.max(sw[,2]),1]
       method.name<-"Estimating Box-Cox transformation parameter via Shapiro-Wilk test statistic"
-      nortest.name<-"Shapiro-Wilk normality test"
       
 
     }
@@ -34,7 +33,6 @@ boxcoxnc <-
       
       pred.lamb<-ad[which.min(ad[,2]),1]
       method.name<-"Estimating Box-Cox transformation parameter via Anderson-Darling test statistic"
-      nortest.name<-"Anderson-Darling normality test"
     
       
     }
@@ -50,7 +48,6 @@ boxcoxnc <-
       
       pred.lamb<-cvm[which.min(cvm[,2]),1]
       method.name<-"Estimating Box-Cox transformation parameter via Cramer-von Mises test statistic"
-      nortest.name<-"Cramer-von Mises normality test"
  
       
     }
@@ -65,7 +62,6 @@ boxcoxnc <-
       
       pred.lamb<-pt[which.min(pt[,2]),1]
       method.name<-"Estimating Box-Cox transformation parameter via Pearson Chi-Square test statistic"
-      nortest.name<-"Pearson Chi-square normality test"   
       
     }
     
@@ -79,7 +75,6 @@ boxcoxnc <-
       
       pred.lamb<-sf[which.max(sf[,2]),1]
       method.name<-"Estimating Box-Cox transformation parameter via Shapiro-Francia test statistic"
-      nortest.name<-"Shapiro-Francia normality test"   
       
 
     }
@@ -94,7 +89,6 @@ boxcoxnc <-
       
       pred.lamb<-lt[which.min(lt[,2]),1]
       method.name<-"Estimating Box-Cox transformation parameter via Lilliefors test statistic"
-      nortest.name<-"Lilliefors normality test"   
 
  
     }
@@ -110,7 +104,6 @@ boxcoxnc <-
       
       pred.lamb<-jb[which.min(jb[,2]),1]
       method.name<-"Estimating Box-Cox transformation parameter via Jarque-Bera test statistic"
-      nortest.name<-"Jarque-Bera normality test"   
 
 
     }
@@ -132,7 +125,6 @@ boxcoxnc <-
       aclam1<-as.numeric(aclam1)
       pred.lamb<-mean(aclam1)
       method.name<-"Estimating Box-Cox transformation parameter via artificial covariate method"
-      nortest.name<-"Shapiro-Wilk normality test"   
 
 
     }
@@ -169,34 +161,50 @@ boxcoxnc <-
       if (method=="sw") {
          statistic<-shapiro.test(data.transformed)$statistic
          pvalue<-shapiro.test(data.transformed)$p.value
+         nortest.name<-"Shapiro-Wilk normality test"
+
       }
       if (method=="ad") {
          statistic<-ad.test(data.transformed)$statistic
          pvalue<-ad.test(data.transformed)$p.value
+         nortest.name<-"Anderson-Darling normality test"
+
       }
       if (method=="cvm") {
          statistic<-cvm.test(data.transformed)$statistic
          pvalue<-cvm.test(data.transformed)$p.value
+         nortest.name<-"Cramer-von Mises normality test"
+
       }
       if (method=="pt") {
          statistic<-pearson.test(data.transformed)$statistic
          pvalue<-pearson.test(data.transformed)$p.value
+         nortest.name<-"Pearson Chi-square normality test"   
+
       }
       if (method=="sf") {
          statistic<-sf.test(data.transformed)$statistic
          pvalue<-sf.test(data.transformed)$p.value
+         nortest.name<-"Shapiro-Francia normality test"   
+
       }
       if (method=="lt") {
          statistic<-lillie.test(data.transformed)$statistic
          pvalue<-lillie.test(data.transformed)$p.value
+         nortest.name<-"Lilliefors normality test"   
+
       }
       if (method=="jb") {
          statistic<-jarque.bera.test(data.transformed)$statistic
          pvalue<-jarque.bera.test(data.transformed)$p.value
+         nortest.name<-"Jarque-Bera normality test"   
+
       }
       if (method=="ac") {
          statistic<-shapiro.test(data.transformed)$statistic
          pvalue<-shapiro.test(data.transformed)$p.value
+         nortest.name<-"Shapiro-Wilk normality test"   
+
       }
    
 
@@ -220,7 +228,10 @@ boxcoxnc <-
       out$lambda.hat<-as.numeric(pred.lamb)
       out$statistic<-as.numeric(statistic)
       out$p.value<-as.numeric(pvalue)
+      out$alpha<-as.numeric(alpha)
       out$tf.data<-data.transformed
+      out$var.name<-dname
+      attr(out, "class") <- "boxcoxnc"
       invisible(out)
 
 

@@ -165,9 +165,13 @@ out$method <-method
 out$lambda.hat <-lam
 out$shapiro <- store
 out$bartlett <- store2
+out$alpha<-as.numeric(alpha)
 out$tf.data <- tf.data
 out$x <- x
+out$y.name <- dname1
+out$x.name <- dname2
 
+attr(out, "class") <- "boxcoxfr"
 invisible(out)
 
 }

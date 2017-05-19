@@ -36,9 +36,13 @@ Neter, J., Kutner, M.H., Nachtsheim, C.J.,Wasserman, W. (1996). \emph{Applied Li
 
 
 \examples{
+
+library(AID)
+
 data(AADT)
 attach(AADT)
 hist(aadt)
-boxcoxfr(aadt, class)
+out <- boxcoxfr(aadt, class)
+confInt(out)
 }
 \keyword{datasets}
