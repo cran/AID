@@ -3,7 +3,7 @@ confInt.boxcoxfr<- function(x, level = 0.95, plot = TRUE, xlab = NULL, ylab = NU
 
 
 if ((level<=0)|(level>=1)) stop("Confidence level must be between 0 and 1")
-if (max((x$shapiro$p.value<x$alpha))==1) stop("Transformed data in each group must be normally distributed")
+if (max((x$shapiro$p.value<x$alpha))==1) stop(paste("Transformed data in each group must be normally distributed at alpha = ",x$alpha,sep = ""))
 
 if (max((x$shapiro$p.value<x$alpha))!=1){
 
@@ -27,8 +27,8 @@ stor1 = stor2 = stor3 = NULL
 mattf <- cbind(stor1, stor2, stor3)
 
 
-if (x$lambda.hat != 0) matbt <- (mattf*x$lambda.hat+1)^(1/x$lambda.hat)
-if (x$lambda.hat == 0) matbt <- exp(mattf)
+if (x$lambda.hat != 0) matbt <- (mattf*x$lambda.hat+1)^(1/x$lambda.hat)-x$lambda2
+if (x$lambda.hat == 0) matbt <- exp(mattf)-x$lambda2
 
 }
 

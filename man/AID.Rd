@@ -6,7 +6,7 @@
 Box-Cox Power Transformation
 }
 \description{
-Box-Cox power transformation parameter is estimated for different purposes.
+Performs Box-Cox power transformation for different purposes, graphical approaches, assess the success of the transformation via tests and plots, computes mean and confidence interval for back transformed data.
 }
 \details{
 \tabular{ll}{

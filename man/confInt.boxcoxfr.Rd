@@ -33,7 +33,7 @@ Confidence interval in each group is constructed separately.
 
 
 \value{
-Returns a matrix of output.
+A matrix with columns giving mean, lower and upper confidence limits for back transformed data. These will be labelled as (1 - level)/2 and 1 - (1 - level)/2 in \% (by default 2.5\% and 97.5\%).
 }
 
 

@@ -1,15 +1,15 @@
 Package: AID
 Type: Package
 Title: Box-Cox Power Transformation
-Version: 1.9
-Date: 2017-05-19
+Version: 2.0
+Date: 2017-05-26
 Depends: R (>= 2.15.0)
 Imports: MASS, tseries, nortest, ggplot2, graphics, stats
 Author: Osman Dag [aut, cre], Ozgur Asar [aut], Ozlem Ilk [aut]
 Maintainer: Osman Dag <osman.dag@hacettepe.edu.tr>
-Description: Box-Cox power transformation parameter is estimated for different purposes.
+Description: Performs Box-Cox power transformation for different purposes, graphical approaches, assess the success of the transformation via tests and plots, computes mean and confidence interval for back transformed data.
 License: GPL (>= 2)
 NeedsCompilation: no
-Packaged: 2017-05-19 12:56:58 UTC; osmandag
+Packaged: 2017-05-26 16:23:50 UTC; osmandag
 Repository: CRAN
-Date/Publication: 2017-05-19 12:20:30 UTC
+Date/Publication: 2017-05-26 15:44:41 UTC
