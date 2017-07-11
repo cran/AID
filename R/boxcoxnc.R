@@ -13,29 +13,28 @@ boxcoxnc <-
     if (is.na(min(data))==TRUE) stop("Data include NA")
     if (min(data)<=0) stop("Data must include positive values. Specify shifting parameter, lambda2")
 
-    
+
+
     if (method=="sw") {
-      sw<-NULL
-      for (i in 1:length(lambda)){
-        if (round(lambda[i],2)!=0) sw<-rbind(sw,c(lambda[i],shapiro.test((data**(lambda[i])-1)/(lambda[i]))$statistic))
-        if (round(lambda[i],2)==0) sw<-rbind(sw,c(lambda[i],shapiro.test(log(data))$statistic))
-      }
-      
-      pred.lamb<-sw[which.max(sw[,2]),1]
-      method.name<-"Estimating Box-Cox transformation parameter via Shapiro-Wilk test statistic"
+  
+store1<-lapply(1:length(lambda), function(x) lambda[x])
+store2<-lapply(1:length(lambda), function(x) if (store1[[x]] != 0) (data^store1[[x]]-1)/store1[[x]] else log(data))
+store3<-lapply(1:length(lambda), function(x) shapiro.test(store2[[x]])$statistic)
+     
+pred.lamb<-store1[[which.max(store3)]]
+method.name<-"Estimating Box-Cox transformation parameter via Shapiro-Wilk test statistic"
       
 
     }
     
     else if (method=="ad") {
       
-      ad<-NULL
-      for (i in 1:length(lambda)){
-        if (round(lambda[i],2)!=0) ad<-rbind(ad,c(lambda[i],ad.test((data**(lambda[i])-1)/(lambda[i]))$statistic))
-        if (round(lambda[i],2)==0) ad<-rbind(ad,c(lambda[i],ad.test(log(data))$statistic))
-      }
+store1<-lapply(1:length(lambda), function(x) lambda[x])
+store2<-lapply(1:length(lambda), function(x) if (store1[[x]] != 0) (data^store1[[x]]-1)/store1[[x]] else log(data))
+store3<-lapply(1:length(lambda), function(x) ad.test(store2[[x]])$statistic)
       
-      pred.lamb<-ad[which.min(ad[,2]),1]
+      pred.lamb<-store1[[which.min(store3)]]
+
       method.name<-"Estimating Box-Cox transformation parameter via Anderson-Darling test statistic"
     
       
@@ -43,14 +42,11 @@ boxcoxnc <-
     
     else if (method=="cvm") {
       
-      # Cramer Von-Mises - in nortest
-      cvm<-NULL
-      for (i in 1:length(lambda)){
-        if (round(lambda[i],2)!=0) cvm<-rbind(cvm,c(lambda[i],cvm.test((data**(lambda[i])-1)/(lambda[i]))$statistic))
-        if (round(lambda[i],2)==0) cvm<-rbind(cvm,c(lambda[i],cvm.test(log(data))$statistic))
-      }
+store1<-lapply(1:length(lambda), function(x) lambda[x])
+store2<-lapply(1:length(lambda), function(x) if (store1[[x]] != 0) (data^store1[[x]]-1)/store1[[x]] else log(data))
+store3<-lapply(1:length(lambda), function(x) cvm.test(store2[[x]])$statistic)
       
-      pred.lamb<-cvm[which.min(cvm[,2]),1]
+      pred.lamb<-store1[[which.min(store3)]]
       method.name<-"Estimating Box-Cox transformation parameter via Cramer-von Mises test statistic"
  
       
@@ -58,26 +54,22 @@ boxcoxnc <-
     
     else if (method=="pt") {
       
-      pt<-NULL
-      for (i in 1:length(lambda)){
-        if (round(lambda[i],2)!=0) pt<-rbind(pt,c(lambda[i],pearson.test((data**(lambda[i])-1)/(lambda[i]))$statistic))
-        if (round(lambda[i],2)==0) pt<-rbind(pt,c(lambda[i],pearson.test(log(data))$statistic))
-      }
+store1<-lapply(1:length(lambda), function(x) lambda[x])
+store2<-lapply(1:length(lambda), function(x) if (store1[[x]] != 0) (data^store1[[x]]-1)/store1[[x]] else log(data))
+store3<-lapply(1:length(lambda), function(x) pearson.test(store2[[x]])$statistic)
       
-      pred.lamb<-pt[which.min(pt[,2]),1]
+      pred.lamb<-store1[[which.min(store3)]]
       method.name<-"Estimating Box-Cox transformation parameter via Pearson Chi-Square test statistic"
       
     }
     
     else if (method=="sf") {
       
-      sf<-NULL
-      for (i in 1:length(lambda)){
-        if (round(lambda[i],2)!=0) sf<-rbind(sf,c(lambda[i],sf.test((data**(lambda[i])-1)/(lambda[i]))$statistic))
-        if (round(lambda[i],2)==0) sf<-rbind(sf,c(lambda[i],sf.test(log(data))$statistic))
-      }
+store1<-lapply(1:length(lambda), function(x) lambda[x])
+store2<-lapply(1:length(lambda), function(x) if (store1[[x]] != 0) (data^store1[[x]]-1)/store1[[x]] else log(data))
+store3<-lapply(1:length(lambda), function(x) sf.test(store2[[x]])$statistic)
       
-      pred.lamb<-sf[which.max(sf[,2]),1]
+      pred.lamb<-store1[[which.max(store3)]]
       method.name<-"Estimating Box-Cox transformation parameter via Shapiro-Francia test statistic"
       
 
@@ -85,13 +77,11 @@ boxcoxnc <-
     
     else if (method=="lt") {
       
-      lt<-NULL
-      for (i in 1:length(lambda)){
-        if (round(lambda[i],2)!=0) lt<-rbind(lt,c(lambda[i],lillie.test((data**(lambda[i])-1)/(lambda[i]))$statistic))
-        if (round(lambda[i],2)==0) lt<-rbind(lt,c(lambda[i],lillie.test(log(data))$statistic))
-      }
+store1<-lapply(1:length(lambda), function(x) lambda[x])
+store2<-lapply(1:length(lambda), function(x) if (store1[[x]] != 0) (data^store1[[x]]-1)/store1[[x]] else log(data))
+store3<-lapply(1:length(lambda), function(x) lillie.test(store2[[x]])$statistic)
       
-      pred.lamb<-lt[which.min(lt[,2]),1]
+      pred.lamb<-store1[[which.min(store3)]]
       method.name<-"Estimating Box-Cox transformation parameter via Lilliefors test statistic"
 
  
@@ -99,40 +89,44 @@ boxcoxnc <-
     
     else if (method=="jb") {
       
-      jb<-NULL
-      for (i in 1:length(lambda)){
-        if (round(lambda[i],2)!=0) jb<-rbind(jb,c(lambda[i],jarque.bera.test((data**(lambda[i])-1)/(lambda[i]))$statistic))
-        if (round(lambda[i],2)==0) jb<-rbind(jb,c(lambda[i],jarque.bera.test(log(data))$statistic))
-      }
-      
-      
-      pred.lamb<-jb[which.min(jb[,2]),1]
+store1<-lapply(1:length(lambda), function(x) lambda[x])
+store2<-lapply(1:length(lambda), function(x) if (store1[[x]] != 0) (data^store1[[x]]-1)/store1[[x]] else log(data))
+store3<-lapply(1:length(lambda), function(x) jarque.bera.test(store2[[x]])$statistic)
+         
+      pred.lamb<-store1[[which.min(store3)]]
       method.name<-"Estimating Box-Cox transformation parameter via Jarque-Bera test statistic"
 
 
     }
     
     else if (method=="ac") {
-      aclam1<-NULL
-      
-      set.seed(100)
-      for (t in 1:30) {
-        
-        ac<-rnorm(length(data),0,100)
-        lm1<-glm(data~ac,family=gaussian)
-        bc1<-boxcox(lm1,lambda,plotit=FALSE)
-        aclam<-bc1$x[which.max(bc1$y)]
-        aclam1<-cbind(aclam1,aclam)
-      }
-      
    
-      aclam1<-as.numeric(aclam1)
-      pred.lamb<-mean(aclam1)
+set.seed(100)
+stor1<-lapply(1:30, function(x) rnorm(length(data),0,100))
+stor2<-lapply(1:30, function(x) glm(data~stor1[[x]],family=gaussian))
+stor3<-lapply(1:30, function(x) boxcox(stor2[[x]],lambda,plotit=FALSE))
+stor4<-sapply(1:30, function(x) stor3[[x]]$x[which.max(stor3[[x]]$y)])
+
+pred.lamb<-mean(stor4)
+
       method.name<-"Estimating Box-Cox transformation parameter via artificial covariate method"
 
+    }
+
+    else if (method=="mle") {
+      
+store1<-lapply(1:length(lambda), function(x) lambda[x])
+store2<-lapply(1:length(lambda), function(x) if (store1[[x]] != 0) (data^store1[[x]]-1)/(store1[[x]]*(geometric.mean(data)^(store1[[x]]-1))) else geometric.mean(data)*log(data))
+store3<-lapply(1:length(lambda), function(x) sum(log(dnorm(store2[[x]], mean = mean(store2[[x]]), sd = sd(store2[[x]])))))
+
+pred.lamb<-store1[[which.max(store3)]]         
+method.name<-"Estimating Box-Cox transformation parameter via maximum likelihood estimation"
 
     }
-    
+
+
+
+
 
     if (pred.lamb==max(lambda)) stop("Enlarge the range of the lambda in a positive direction")
     if (pred.lamb==min(lambda)) stop("Enlarge the range of the lambda in a negative direction")
@@ -204,14 +198,13 @@ boxcoxnc <-
          nortest.name<-"Jarque-Bera normality test"   
 
       }
-      if (method=="ac") {
+      if ((method=="ac")|(method=="mle")) {
          statistic<-shapiro.test(data.transformed)$statistic
          pvalue<-shapiro.test(data.transformed)$p.value
          nortest.name<-"Shapiro-Wilk normality test"   
 
       }
-   
-
+      
       
       if (verbose){
         cat("\n"," Box-Cox power transformation", "\n", sep = " ")

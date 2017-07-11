@@ -6,7 +6,7 @@
 Box-Cox Power Transformation
 }
 \description{
-Performs Box-Cox power transformation for different purposes, graphical approaches, assess the success of the transformation via tests and plots, computes mean and confidence interval for back transformed data.
+Performs Box-Cox power transformation for different purposes, graphical approaches, assesses the success of the transformation via tests and plots, computes mean and confidence interval for back transformed data.
 }
 \details{
 \tabular{ll}{
