@@ -1,6 +1,5 @@
-\name{confInt}
+\name{confInt.boxcoxnc}
 \alias{confInt}
-\alias{confInt.default}
 \alias{confInt.boxcoxnc}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{

@@ -128,8 +128,8 @@ method.name<-"Estimating Box-Cox transformation parameter via maximum likelihood
 
 
 
-    if (pred.lamb==max(lambda)) stop("Enlarge the range of the lambda in a positive direction")
-    if (pred.lamb==min(lambda)) stop("Enlarge the range of the lambda in a negative direction")
+    if (pred.lamb==max(lambda)) stop("Enlarge the range of the lambda")
+    if (pred.lamb==min(lambda)) stop("Enlarge the range of the lambda")
       
 
 

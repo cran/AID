@@ -1,8 +1,6 @@
 
 confInt<- function(x,...) UseMethod("confInt")
 
-confInt.default <- function(x,...) confInt.boxcoxnc(x,...)
-
 confInt.boxcoxnc<- function(x, level = 0.95, verbose = TRUE,...){
 
 
