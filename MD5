@@ -1,4 +1,4 @@
-946396114978177de82ea416bc5befbc *DESCRIPTION
+63a76469082502eb7eced5176ee23320 *DESCRIPTION
 ce6bbb4454fe93b7880217550aefe958 *NAMESPACE
 b8b68833183c74d210288875e9e375f2 *R/boxcoxfr.R
 95858e92a4e8e81529afa0a94da1999a *R/boxcoxlm.R
@@ -8,10 +8,10 @@ c0cd3f2859bf61db755d3fc1743cdbd7 *R/confInt.boxcoxfr.R
 337855225f97eadf76ed6ff9f2a2f2cc *data/AADT.rda
 da60dfe912df61442cd159d3c14e21f5 *data/grades.rda
 bb3be1762b0f88727599f931b8c78da8 *data/textile.rda
-df6e374e1936e4931761be1e4be4cd41 *inst/citation
+d4cedd737f3c893f11e646c7951db343 *inst/citation
 8bb2a8efcb2f0ae214e346f79f1cf5d0 *man/AADT.Rd
 b3d58a5e0744ff35a79e5d1b71a5af8a *man/AID.Rd
-ad5e9cebe1e7b1061a9aa7e26efe3e4d *man/boxcoxfr.Rd
+a241d63b044abd1bfbb4b71276942312 *man/boxcoxfr.Rd
 bd3cef62d838e0faed04ba2645144e17 *man/boxcoxlm.Rd
 8ac717feff90684876305b936721c0a7 *man/boxcoxnc.Rd
 af6cb1d3ad65a5e32b10a92f1b45ed23 *man/confInt.boxcoxfr.Rd

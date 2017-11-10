@@ -63,7 +63,7 @@ A list with class "boxcoxfr" containing the following elements:
 
 \references{
 
-Dag, O., Ilk, O. An Algorithm for Estimating Box-Cox Transformation Parameter in ANOVA. \emph{Communications in Statistics - Simulation and Computation,  Accepted (June 16, 2016)}.
+Dag, O., Ilk, O. (2017). An Algorithm for Estimating Box-Cox Transformation Parameter in ANOVA. \emph{Communications in Statistics - Simulation and Computation}, \bold{46:8}, 6424--6435.
 
 }
 
