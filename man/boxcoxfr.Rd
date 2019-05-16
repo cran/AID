@@ -2,10 +2,10 @@
 \alias{boxcoxfr}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Box-Cox Transformation for One-Way Independent Groups Designs
+Box-Cox Transformation for One-Way ANOVA
 }
 \description{
-\code{boxcoxfr} performs Box-Cox transformation for one-way independent groups designs. It is useful to use if the normality or/and the homogenity of variance is/are not satisfied while comparing two or more groups. 
+\code{boxcoxfr} performs Box-Cox transformation for one-way ANOVA. It is useful to use if the normality or/and the homogenity of variance is/are not satisfied while comparing two or more groups. 
 
     
 }
@@ -75,21 +75,53 @@ Osman Dag, Ozlem Ilk
 
 \examples{
 
-library(AID)
+######
 
+# Communication between AID and onewaytests packages
+
+library(AID)
+library(onewaytests)
+
+# Average Annual Daily Traffic Data (AID)
 data(AADT)
-attach(AADT)
-out <- boxcoxfr(aadt, class)
-out$shapiro
-out$bartlett
-out$tf.data
+
+# to obtain descriptive statistics by groups (onewaytests)
+describe(aadt ~ class, data = AADT)
+
+# to check normality of data in each group (onewaytests)
+nor.test(aadt ~ class, data = AADT)
+
+# to check variance homogeneity (onewaytests)
+homog.test(aadt ~ class, data = AADT, method = "Bartlett")
+
+
+# to apply Box-Cox transformation (AID)
+out <- boxcoxfr(AADT$aadt, AADT$class)
+
+# to obtained transformed data
+AADT$tf.aadt <- out$tf.data
+
+# to conduct one-way ANOVA with transformed data (onewaytests)
+result<-aov.test(tf.aadt ~ class, data = AADT)
+
+# to make pairwise comparison (onewaytests)
+paircomp(result)
+
+# to convert the statistics into the original scale (AID)
 confInt(out, level = 0.95)
 
+######
+
+library(AID)
 
 data <- rnorm(120, 10, 1)
 factor <- rep(c("X", "Y", "Z"), each = 40)
 out <- boxcoxfr(data, factor, lambda = seq(-5, 5, 0.01), tau = 0.01, alpha = 0.01)
 confInt(out, level = 0.95)
+
+######
+
+
 
 
 }

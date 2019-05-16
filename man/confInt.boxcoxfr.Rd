@@ -2,10 +2,10 @@
 \alias{confInt.boxcoxfr}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Mean and Confidence Interval for Back Transformed Data
+Mean and Asymmetric Confidence Interval for Back Transformed Data
 }
 \description{
-\code{confInt.boxcoxfr} calculates mean and confidence interval for back transformed data in each group and plots their error bars with confidence intervals.
+\code{confInt.boxcoxfr} calculates mean and asymmetric confidence interval for back transformed data in each group and plots their error bars with confidence intervals.
 }
 
 \usage{

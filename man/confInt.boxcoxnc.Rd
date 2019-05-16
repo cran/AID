@@ -3,10 +3,10 @@
 \alias{confInt.boxcoxnc}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Mean and Confidence Interval for Back Transformed Data
+Mean and Asymmetric Confidence Interval for Back Transformed Data
 }
 \description{
-\code{confInt} is a generic function to calculate mean and confidence interval for back transformed data.
+\code{confInt} is a generic function to calculate mean and asymmetric confidence interval for back transformed data.
 }
 
 \usage{

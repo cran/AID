@@ -1,20 +1,6 @@
 citHeader("To cite AID in publications use:")
 
 citEntry(entry="article",
-  title  = "A Methodology to Implement Box-Cox Transformation When No Covariate is Available.",
-  author = personList(as.person("O. Dag"),as.person("O. Asar"), as.person("O. Ilk")),
-  journal = "Communications in Statistics - Simulation and Computation",
-  year = "2014",
-  volume = "43",
-  number = "7",
-  pages = "1740-1759",
-  url = "http://www.tandfonline.com/doi/abs/10.1080/03610918.2012.744042",
-  textVersion = paste("Dag, O., Asar, O., Ilk, O. (2014).",
-                      "A Methodology to Implement Box-Cox Transformation When No Covariate is Available.",
-                      "Communications in Statistics - Simulation and Computation,  43:7, 1740-1759."))
-
-
-citEntry(entry="article",
   title  = "Estimating Box-Cox Power Transformation Parameter Via Goodness-of-Fit Tests.",
   author = personList(as.person("O. Asar"),as.person("O. Ilk"), as.person("O. Dag")),
   journal = "Communications in Statistics - Simulation and Computation",
@@ -25,7 +11,8 @@ citEntry(entry="article",
   url = "http://www.tandfonline.com/doi/abs/10.1080/03610918.2014.957839",
   textVersion = paste("Asar, O., Ilk, O., Dag, O. (2017).",
                       "Estimating Box-Cox Power Transformation Parameter Via Goodness-of-Fit Tests.",
-                      "Communications in Statistics - Simulation and Computation,  46:1, 91-105."))
+                      "Communications in Statistics - Simulation and Computation,  46:1, 91-105."),
+  header       = "If Box-Cox via goodness-of-fit is used, please cite:")
 
 
 citEntry(entry="article",
@@ -40,5 +27,20 @@ citEntry(entry="article",
   url = "http://www.tandfonline.com/doi/abs/10.1080/03610918.2016.1204458",
   textVersion = paste("Dag, O., Ilk, O. (2017).",
                       "An Algorithm for Estimating Box-Cox Transformation Parameter in ANOVA.",
-                      "Communications in Statistics - Simulation and Computation,  46:8, 6424-6435."))
+                      "Communications in Statistics - Simulation and Computation,  46:8, 6424-6435."),
+  header       = "If Box-Cox for ANOVA is used, please cite:")
 
+
+citEntry(entry="article",
+  title  = "A Methodology to Implement Box-Cox Transformation When No Covariate is Available.",
+  author = personList(as.person("O. Dag"),as.person("O. Asar"), as.person("O. Ilk")),
+  journal = "Communications in Statistics - Simulation and Computation",
+  year = "2014",
+  volume = "43",
+  number = "7",
+  pages = "1740-1759",
+  url = "http://www.tandfonline.com/doi/abs/10.1080/03610918.2012.744042",
+  textVersion = paste("Dag, O., Asar, O., Ilk, O. (2014).",
+                      "A Methodology to Implement Box-Cox Transformation When No Covariate is Available.",
+                      "Communications in Statistics - Simulation and Computation,  43:7, 1740-1759."),
+  header       = "If Box-Cox via artificial covariate method is used, please cite:")

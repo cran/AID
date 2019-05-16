@@ -15,10 +15,10 @@ Average annual daily traffic data collected from the Minnesota Department of Tra
     \item{\code{ctypop}}{population of county}
     \item{\code{lanes}}{number of lanes in the section of road}
     \item{\code{width}}{width of the section of road (in feet)}
-    \item{\code{control}}{a factor with levels: 1 = access control; 2 = no access control}
-    \item{\code{class}}{a factor with levels: 1 = rural interstate; 2 = rural noninterstate; 3 = urban interstate; 4 = urban noninterstate}
+    \item{\code{control}}{a factor with levels: access control; no access control}
+    \item{\code{class}}{a factor with levels: rural interstate; rural noninterstate; urban interstate; urban noninterstate}
     \item{\code{truck}}{availability situation of road section to trucks}
-    \item{\code{locale}}{a factor with levels: 1 = rural; 2 = urban, population <= 50,000; 3 = urban, population > 50,000}
+    \item{\code{locale}}{a factor with levels: rural; urban, population <= 50,000; urban, population > 50,000}
   }
 }
 %%  \details{
