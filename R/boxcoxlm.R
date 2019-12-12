@@ -12,7 +12,7 @@ boxcoxlm <-
     
     y <- y + lambda2
     
-    if (class(x)!="matrix") stop("x must be a matrix")
+    if (!any(class(x)=="matrix")) stop("x must be a matrix")
     
     if (is.na(min(y))==TRUE) stop("x matrix includes NA")
     if (is.na(min(x))==TRUE) stop("response y includes NA")
