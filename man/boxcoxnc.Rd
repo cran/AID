@@ -2,10 +2,10 @@
 \alias{boxcoxnc}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Box-Cox Transformation for Normality of a Univariate Variable
+Box-Cox Transformation for Normality of a Variable
 }
 \description{
-\code{boxcoxnc} performs Box-Cox transformation for normality of a univariate variable and provides graphical analysis.  
+\code{boxcoxnc} performs Box-Cox transformation for normality of a variable and provides graphical analysis.  
 }
 \usage{boxcoxnc(data, method = "sw", lambda = seq(-3,3,0.01), lambda2 = NULL, plot = TRUE, 
   alpha = 0.05, verbose = TRUE)}

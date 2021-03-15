@@ -221,14 +221,14 @@ method.name<-"Estimating Box-Cox transformation parameter via maximum likelihood
       }
       
       out<-list()
-      out$method=method.name
-      out$lambda.hat<-as.numeric(pred.lamb)
-      out$lambda2<-as.numeric(lambda2)
-      out$statistic<-as.numeric(statistic)
-      out$p.value<-as.numeric(pvalue)
-      out$alpha<-as.numeric(alpha)
-      out$tf.data<-data.transformed
-      out$var.name<-dname
+      out$method <- method.name
+      out$lambda.hat <- as.numeric(pred.lamb)
+      out$lambda2 <- as.numeric(lambda2)
+      out$statistic <- as.numeric(statistic)
+      out$p.value <- as.numeric(pvalue)
+      out$alpha <- as.numeric(alpha)
+      out$tf.data <- data.transformed
+      out$var.name <- dname
       attr(out, "class") <- "boxcoxnc"
       invisible(out)
 
