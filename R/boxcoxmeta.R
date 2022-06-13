@@ -58,8 +58,7 @@ boxcoxmeta<-function(data,
       cat("\n", " Box-Cox power transformation via meta analysis", 
           "\n", sep = " ")
       cat("-------------------------------------------------------", 
-          "\n", sep = " ")
-      cat("  data :", dname, "\n\n", sep = " ")
+          "\n\n", sep = " ")
       cat("  lambda.hat :", pred.lamb, "\n\n", 
           sep = " ")
       cat("\n", "  ","Normality tests for transformed data ", 

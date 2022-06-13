@@ -150,8 +150,7 @@ method="MLEFR"
 if (verbose){
 
 cat("\n"," Box-Cox power transformation", "\n", sep = " ")
-cat("---------------------------------------------------------------------", "\n", sep = " ")
-cat("  data :", dname1, "and",dname2, "\n\n", sep = " ")
+cat("---------------------------------------------------------------------", "\n\n", sep = " ")
 cat("  lambda.hat :", lambda, "\n\n", sep = " ")
 
 cat("\n","  Shapiro-Wilk normality test for transformed data ","(alpha = ",alpha,")", "\n", sep = "")

@@ -1,9 +1,9 @@
-8cb622d74443ac7822fc928b1c5e3dfa *DESCRIPTION
+ac8ac2d96ce6a5b4524b3d38c31b68c1 *DESCRIPTION
 9a5d28ba3d1ca04f7ea953472a8d852a *NAMESPACE
-b8b68833183c74d210288875e9e375f2 *R/boxcoxfr.R
-c88013a0af28abe52ba58850ef68badc *R/boxcoxlm.R
-ec911af414e27c23d0fadb92ad7f7b93 *R/boxcoxmeta.R
-482a589c8659dab4be44d2f25edbc84a *R/boxcoxnc.R
+8b3950c82fdf4db800137837adc23547 *R/boxcoxfr.R
+f0ca0822878003080b43b10f5d3c37dd *R/boxcoxlm.R
+3b1db39a54a85bfd0b1e49bd59f432f0 *R/boxcoxmeta.R
+c43e2fcb7cf1f2d47623af2cca161c60 *R/boxcoxnc.R
 fead5b9bc2e9229c0863cac33cb36bbd *R/confInt.R
 c0cd3f2859bf61db755d3fc1743cdbd7 *R/confInt.boxcoxfr.R
 725d82d6b41125a681f8e6b147120845 *R/confInt.boxcoxmeta.R
@@ -13,7 +13,7 @@ bb3be1762b0f88727599f931b8c78da8 *data/textile.rda
 ed89025579bbe9a68de632821c613b9a *inst/citation
 bb7811d33ea1f9486ecbf09ef728d5b8 *man/AADT.Rd
 b3d58a5e0744ff35a79e5d1b71a5af8a *man/AID.Rd
-0b0f3e95ba986581928e02ce205700ca *man/boxcoxfr.Rd
+06ecc1c32a6e2a6a55414cbfee9f4bb0 *man/boxcoxfr.Rd
 bd3cef62d838e0faed04ba2645144e17 *man/boxcoxlm.Rd
 76baa33f001e6f578c58bb5b9f59c079 *man/boxcoxmeta.Rd
 ac1d9479e14e47ed01f8f59d1af97b60 *man/boxcoxnc.Rd

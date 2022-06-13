@@ -257,8 +257,7 @@ method.name<-"Estimating Box-Cox transformation parameter via maximum likelihood
     
     if (verbose){
       cat("\n"," Box-Cox power transformation", "\n", sep = " ")
-      cat("--------------------------------------------------------------", "\n", sep = " ")
-      cat("  data :", dname1,"~", dname2, "\n\n", sep = " ")
+      cat("--------------------------------------------------------------", "\n\n", sep = " ")
       cat("  lambda.hat :", pred.lamb, "\n\n", sep = " ")
       cat("\n", "  ",nortest.name," (alpha = ",alpha,")", "\n", sep = "")
       cat("--------------------------------------------------------------", "\n\n", sep = " ")

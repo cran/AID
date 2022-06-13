@@ -17,7 +17,7 @@ Box-Cox Transformation for One-Way ANOVA
 \arguments{
   \item{y}{a numeric vector of data values.}
   \item{x}{a vector or factor object which gives the group for the corresponding elements of y.}
-  \item{option}{a character string to select the desired option for the objective of transformation. "norm" and "var" are the options which search for a transformation to satisfy the normality of groups and the homogenity of variances, respectively. "both" is the option which searches for a transformation to satisfy both the normality of groups and the homogenity of variances. Default is set to "both".}
+  \item{option}{a character string to select the desired option for the objective of transformation. "nor" and "var" are the options which search for a transformation to satisfy the normality of groups and the homogenity of variances, respectively. "both" is the option which searches for a transformation to satisfy both the normality of groups and the homogenity of variances. Default is set to "both".}
   \item{lambda}{a vector which includes the sequence of feasible lambda values. Default is set to (-3, 3) with increment 0.01.} 
   \item{lambda2}{a numeric for an additional shifting parameter. Default is set to lambda2 = 0.} 
   \item{tau}{the feasible region parameter for the construction of feasible region. Default is set to 0.05. If tau = 0, it returns the MLE of transformation parameter.} 
@@ -98,7 +98,7 @@ homog.test(aadt ~ class, data = AADT, method = "Bartlett")
 # to apply Box-Cox transformation (AID)
 out <- boxcoxfr(AADT$aadt, AADT$class)
 
-# to obtained transformed data
+# to obtain transformed data
 AADT$tf.aadt <- out$tf.data
 
 # to conduct one-way ANOVA with transformed data (onewaytests)
