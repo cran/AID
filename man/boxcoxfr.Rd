@@ -115,7 +115,7 @@ confInt(out, level = 0.95)
 library(AID)
 
 data <- rnorm(120, 10, 1)
-factor <- rep(c("X", "Y", "Z"), each = 40)
+factor <- factor(rep(c("X", "Y", "Z"), each = 40))
 out <- boxcoxfr(data, factor, lambda = seq(-5, 5, 0.01), tau = 0.01, alpha = 0.01)
 confInt(out, level = 0.95)
 

@@ -1,46 +1,59 @@
 citHeader("To cite AID in publications use:")
 
-citEntry(entry="article",
-  title  = "Estimating Box-Cox Power Transformation Parameter Via Goodness-of-Fit Tests.",
-  author = personList(as.person("O. Asar"),as.person("O. Ilk"), as.person("O. Dag")),
-  journal = "Communications in Statistics - Simulation and Computation",
-  year = "2017",
-  volume = "46",
-  number = "1",
-  pages = "91-105",
-  url = "https://www.tandfonline.com/doi/abs/10.1080/03610918.2014.957839",
-  textVersion = paste("Asar, O., Ilk, O., Dag, O. (2017).",
-                      "Estimating Box-Cox Power Transformation Parameter Via Goodness-of-Fit Tests.",
-                      "Communications in Statistics - Simulation and Computation,  46:1, 91-105."),
-  header       = "If Box-Cox via goodness-of-fit tests is used, please cite:")
+bibentry(bibtype = "Article",
+  title        = "Estimating Box-Cox Power Transformation Parameter Via Goodness-of-Fit Tests",
+  author       = c(person(given = "Ozgur", family = "Asar"),
+                   person(given = "Ozlem", family = "Ilk"),
+                   person(given = "Osman", family = "Dag")),
+  journal      = "Communications in Statistics - Simulation and Computation",
+  year         = "2017",
+  volume       = "46",
+  number       = "1",
+  pages        = "91--105",
+  doi          = "10.1080/03610918.2014.957839",
+  header       = "If Box-Cox via goodness-of-fit tests is used, please cite:"
+)
 
 
-citEntry(entry="article",
-  title  = "An Algorithm for Estimating Box-Cox Transformation Parameter in ANOVA.",
-  author = personList(as.person("O. Dag"), 
-			     as.person("O. Ilk")),
-  journal = "Communications in Statistics - Simulation and Computation",
-  year = "2017",
-  volume = "46",
-  number = "8",
-  pages = "6424-6435",
-  url = "https://www.tandfonline.com/doi/abs/10.1080/03610918.2016.1204458",
-  textVersion = paste("Dag, O., Ilk, O. (2017).",
-                      "An Algorithm for Estimating Box-Cox Transformation Parameter in ANOVA.",
-                      "Communications in Statistics - Simulation and Computation,  46:8, 6424-6435."),
-  header       = "If Box-Cox for ANOVA is used, please cite:")
+bibentry(bibtype = "Article",
+  title        = "An Algorithm for Estimating Box-Cox Transformation Parameter in ANOVA",
+  author       = c(person(given = "Osman", family = "Dag"),
+                   person(given = "Ozlem", family = "Ilk")),
+  journal      = "Communications in Statistics - Simulation and Computation",
+  year         = "2017",
+  volume       = "46",
+  number       = "8",
+  pages        = "6424--6435",
+  doi          = "10.1080/03610918.2016.1204458",
+  header       = "If Box-Cox for ANOVA is used, please cite:"
+)
 
 
-citEntry(entry="article",
-  title  = "A Methodology to Implement Box-Cox Transformation When No Covariate is Available.",
-  author = personList(as.person("O. Dag"),as.person("O. Asar"), as.person("O. Ilk")),
-  journal = "Communications in Statistics - Simulation and Computation",
-  year = "2014",
-  volume = "43",
-  number = "7",
-  pages = "1740-1759",
-  url = "https://www.tandfonline.com/doi/abs/10.1080/03610918.2012.744042",
-  textVersion = paste("Dag, O., Asar, O., Ilk, O. (2014).",
-                      "A Methodology to Implement Box-Cox Transformation When No Covariate is Available.",
-                      "Communications in Statistics - Simulation and Computation,  43:7, 1740-1759."),
-  header       = "If Box-Cox via artificial covariate method is used, please cite:")
+bibentry(bibtype = "Article",
+  title        = "A Methodology to Implement Box-Cox Transformation When No Covariate is Available",
+  author       = c(person(given = "Osman", family = "Dag"),
+                   person(given = "Ozgur", family = "Asar"),
+                   person(given = "Ozlem", family = "Ilk")),
+  journal      = "Communications in Statistics - Simulation and Computation",
+  year         = "2014",
+  volume       = "43",
+  number       = "7",
+  pages        = "1740--1759",
+  doi          = "10.1080/03610918.2012.744042",
+  header       = "If Box-Cox via artificial covariate method is used, please cite:"
+)
+
+
+bibentry(bibtype = "Article",
+  title        = "Ensemble Based Box-Cox Transformation via Meta Analysis",
+  author       = c(person(given = "M.A.", family = "Yilmaz"),
+                   person(given = "Osman", family = "Dag")),
+  journal      = "Journal of Advanced Research in Natural and Applied Sciences",
+  year         = "2022",
+  volume       = "8",
+  number       = "3",
+  pages        = "463--471",
+  doi          = "10.28979/jarnas.1037343",
+  header       = "If Box-Cox via meta analysis is used, please cite:"
+)
+

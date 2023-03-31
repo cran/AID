@@ -1,15 +1,31 @@
 boxcoxfr <- function(y, x, option="both",lambda = seq(-3,3,0.01), lambda2 = NULL, tau = 0.05, alpha = 0.05, verbose = TRUE){
 
-dname1<-deparse(substitute(y))
-dname2<-deparse(substitute(x))
-
-
-x=factor(x)
-
-k=length(levels(x))
-
-
-if (length(y) != length(x)) {stop("The lengths of x and y must be equal")}
+  dname1<-deparse(substitute(y))
+  dname2<-deparse(substitute(x))
+  if(typeof(y)=="list"){
+    dname1 <-colnames(as.data.frame(y))
+    if(length(dname1)>1)dname1<-"list"
+    y<-unlist(y)
+  }else{
+    dname1 <-deparse(substitute(y))
+    y <- as.numeric(y)
+  }
+  if(typeof(x)=="list"){
+    factor_levels<-unlist((x))
+    dname2 <-colnames(as.data.frame(x))
+    if(length(dname2)>1)dname2<-"list"
+    x<-unlist(x)
+  }else{
+    factor_levels<-(x)
+    dname2 <-deparse(substitute(x))
+    x <- as.numeric(x)
+  }
+  x=factor(x)
+  
+  k=length(levels(x))
+  
+  
+  if (length(y) != length(x)) {stop("The lengths of x and y must be equal")}
 
 
 if(is.null(lambda2)) lambda2<-0
@@ -147,22 +163,27 @@ method="MLE"
 method="MLEFR"
 }
 
-if (verbose){
-
-cat("\n"," Box-Cox power transformation", "\n", sep = " ")
-cat("---------------------------------------------------------------------", "\n\n", sep = " ")
-cat("  lambda.hat :", lambda, "\n\n", sep = " ")
-
-cat("\n","  Shapiro-Wilk normality test for transformed data ","(alpha = ",alpha,")", "\n", sep = "")
-cat("-------------------------------------------------------------------", "\n", sep = " ")
-print(store)
-
-cat("\n\n","  Bartlett's homogeneity test for transformed data ","(alpha = ",alpha,")", "\n", sep = "")
-cat("-------------------------------------------------------------------", "\n", sep = " ")
-print(store2)
-
-cat("---------------------------------------------------------------------", "\n\n", sep = " ")
-}
+if (verbose) {
+  
+  maxentry <-75
+  line<- paste(c(rep("-", round((maxentry + 
+                                   10 - 32)/2, 0)), rep("-", 20), rep("-", 
+                                                                      round((maxentry + 10 - 32)/2, 0))), sep = "")
+  
+  cat("\n"," Box-Cox power transformation", "\n", sep = " ")
+  cat( line, sep = "","\n")
+  cat("  data :", dname1, "and",dname2, "\n\n", sep = " ")
+  cat("  lambda.hat :", lambda, "\n\n", sep = " ")
+  
+  cat("\n","  Shapiro-Wilk normality test for transformed data ","(alpha = ",alpha,")", "\n", sep = "")
+  cat( line[1:(length(line)-5)], sep = "","\n")
+  print(store)
+  
+  cat("\n\n","  Bartlett's homogeneity test for transformed data ","(alpha = ",alpha,")", "\n", sep = "")
+  cat( line[1:(length(line)-5)], sep = "","\n")
+  print(store2)
+  
+  cat( line, sep = "")}
 
 
 out <- list()
