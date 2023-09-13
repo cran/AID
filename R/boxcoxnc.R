@@ -1,13 +1,9 @@
-boxcoxnc <-function(data, method="sw", lambda = seq(-3,3,0.01), lambda2 = NULL, plot = TRUE, alpha = 0.05, verbose = TRUE)
+boxcoxnc <-
+  function(data, method="sw", lambda = seq(-3,3,0.01), lambda2 = NULL, plot = TRUE, alpha = 0.05, verbose = TRUE)
   {
-    if(typeof(data)=="list"){
-    dname <-colnames(as.data.frame(data))
-    if(length(dname)>1)dname<-"list"
-    data<-unlist(data)
-  }else{
-    dname <-deparse(substitute(data))
-    data <- as.numeric(data)
-  }
+    dname<-deparse(substitute(data))
+    
+    data<-as.numeric(data)
    
     
     if(is.null(lambda2)) lambda2<-0
@@ -210,35 +206,30 @@ method.name<-"Estimating Box-Cox transformation parameter via maximum likelihood
       }
       
       
-    if (verbose){
-    maxentry <- nchar(method.name)
-    if (maxentry < 25) maxentry <- 25
-    line<- paste(c(rep("-", round((maxentry + 
-                                     10 - 32)/2, 0)), rep("-", 20), rep("-", 
-                                                                        round((maxentry + 10 - 32)/2, 0))), sep = "")
-    cat("\n"," Box-Cox power transformation", "\n", sep = " ")
-    cat( line, sep = "")
-    cat("\n","  data :", dname, "\n\n", sep = " ")
-    cat("\n","  lambda.hat :", pred.lamb, "\n\n", sep = " ")
-    cat("\n", "  ",nortest.name," for transformed data ", "(alpha = ",alpha,")", "\n", sep = "")
-    cat(line[1:(length(line)-5)], sep = "")
-    cat("\n","  statistic  :", statistic, "\n", sep = " ")
-    cat("\n","  p.value    :", pvalue, "\n\n", sep = " ")
-    cat(if(pvalue > alpha){"  Result     : Transformed data are normal."}
-        else {"   Result     : Transformed data are not normal."},"\n")
-    cat(line, sep = "")
+      if (verbose){
+        cat("\n"," Box-Cox power transformation", "\n", sep = " ")
+        cat("-------------------------------------------------------------------", "\n\n", sep = " ")
+        cat("  lambda.hat :", pred.lamb, "\n\n", sep = " ")
+	cat("\n", "  ",nortest.name," for transformed data ", "(alpha = ",alpha,")", "\n", sep = "")
+        cat("-------------------------------------------------------------------", "\n\n", sep = " ")
+        cat("  statistic  :", statistic, "\n", sep = " ")
+        cat("  p.value    :", pvalue, "\n\n", sep = " ")
+        cat(if(pvalue > alpha){"  Result     : Transformed data are normal."}
+            else {"  Result     : Transformed data are not normal."},"\n")
+        cat("-------------------------------------------------------------------", "\n\n", sep = " ")
+      }
+      
+      out<-list()
+      out$method <- method.name
+      out$lambda.hat <- as.numeric(pred.lamb)
+      out$lambda2 <- as.numeric(lambda2)
+      out$statistic <- as.numeric(statistic)
+      out$p.value <- as.numeric(pvalue)
+      out$alpha <- as.numeric(alpha)
+      out$tf.data <- data.transformed
+      out$var.name <- dname
+      attr(out, "class") <- "boxcoxnc"
+      invisible(out)
+
+
   }
-  out <- list()
-  out$method <- method.name
-  out$lambda.hat <- as.numeric(pred.lamb)
-  out$lambda2 <- as.numeric(lambda2)
-  out$statistic <- as.numeric(statistic)
-  out$p.value <- as.numeric(pvalue)
-  out$alpha <- as.numeric(alpha)
-  out$tf.data <- data.transformed
-  out$var.name <- dname
-  attr(out, "class") <- "boxcoxnc"
-  invisible(out)
-
-
-}

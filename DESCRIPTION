@@ -1,17 +1,17 @@
 Package: AID
 Type: Package
 Title: Box-Cox Power Transformation
-Version: 2.8
-Date: 2023-03-31
+Version: 2.9
+Date: 2023-09-13
 Depends: R (>= 3.2.0)
 Imports: MASS, tseries, nortest, ggplot2, graphics, psych, stats, meta,
         stringr
 Suggests: onewaytests
-Author: Osman Dag [aut, cre], Ozgur Asar [aut], Ozlem Ilk [aut], Muhammed Ali Yilmaz [aut]
+Author: Osman Dag [aut, cre], Muhammed Ali Yilmaz [aut], Ozgur Asar [ctb], Ozlem Ilk [ctb] 
 Maintainer: Osman Dag <osman.dag@outlook.com>
-Description: Performs Box-Cox power transformation for a single non-normal variable, ANOVA (Dag and Ilk, 2017) <doi:10.1080/03610918.2016.1204458> and Linear Models via different estimation techniques: maximum likelihood estimation, least square estimation, goodness-of-fit tests (Asar et al., 2017) <doi:10.1080/03610918.2014.957839>, artificial covariate (Dag et al., 2014) <doi:10.1080/03610918.2012.744042>, meta analysis (Yilmaz and Dag, 2022) <doi:10.28979/jarnas.1037343>. It also performs graphical approaches, assesses the success of the transformation via tests and plots, computes mean and confidence interval for back transformed data.
+Description: Performs Box-Cox power transformation for different purposes, graphical approaches, assesses the success of the transformation via tests and plots, computes mean and confidence interval for back transformed data.
 License: GPL (>= 2)
 NeedsCompilation: no
-Packaged: 2023-03-31 14:53:57 UTC; osmandag
+Packaged: 2023-09-13 07:38:03 UTC; osmandag
 Repository: CRAN
-Date/Publication: 2023-03-31 18:30:11 UTC
+Date/Publication: 2023-09-13 11:42:34 UTC

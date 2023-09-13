@@ -56,7 +56,7 @@ A list with class "boxcoxmeta" containing the following elements:
 
 }
 \references{
-Asar, O., Ilk, O., Dag, O. (2017). Estimating Box-Cox Power Transformation Parameter via Goodness of Fit Tests. \emph{Communications in Statistics - Simulation and Computation}, \bold{46:1}, 91--105.
+Yilmaz, M. A., Dag, O. (2022). Ensemble Based Box-Cox Transformation via Meta Analysis. \emph{Journal of Advanced Research in Natural and Applied Sciences}, \bold{8:3}, 463--471.
 }
 \author{
 Muhammed Ali Yilmaz, Osman Dag 

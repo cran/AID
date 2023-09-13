@@ -29,14 +29,7 @@ boxcoxmeta<-function(data,
     if (pred.lamb != 0) data.transformed <- ((data^pred.lamb) - 1)/pred.lamb
     if (pred.lamb == 0) data.transformed <- log(data)
     
-    if(typeof(data)=="list"){
-      dname <-colnames(as.data.frame(data))
-      if(length(dname)>1)dname<-"list"
-      data<-unlist(data)
-    }else{
-      dname <-deparse(substitute(data))
-      data <- as.numeric(data)
-    }
+    dname<-deparse(substitute(data))
     nortest.name <- str_replace_all(paste(method,collapse = " "),pattern = " ",replacement = ",")
     
     results<-data.frame(matrix(nrow=length(method),ncol=4))
@@ -61,24 +54,25 @@ boxcoxmeta<-function(data,
       }
     }
     row.names(results)<-NULL
-    
-    if (verbose){
-      maxentry <- 60
-      if (maxentry < 25) maxentry <- 25
-      line<- paste(c(rep("-", round((maxentry + 
-                                       10 - 32)/2, 0)), rep("-", 20), rep("-", 
-                                                                          round((maxentry + 10 - 32)/2, 0))), sep = "")
-      cat("\n"," Box-Cox power transformation via meta analysis", "\n", sep = " ")
-      cat( line, sep = "")
-      cat("\n","  data :", dname, "\n\n", sep = " ")
-      cat("\n","  lambda.hat :", pred.lamb, "\n\n", sep = " ")
-      cat("\n", "  ","Normality tests for transformed data ",
-          "(alpha = ", alpha, ")", "\n",
+    if (verbose) {
+      cat("\n", " Box-Cox power transformation via meta analysis", 
+          "\n", sep = " ")
+      cat("-------------------------------------------------------", 
+          "\n\n", sep = " ")
+      cat("  lambda.hat :", pred.lamb, "\n\n", 
+          sep = " ")
+      cat("\n", "  ","Normality tests for transformed data ", 
+          "(alpha = ", alpha, ")", "\n", 
           sep = "")
-      cat(line[1:(length(line)-5)],"\n", sep = "")
+      cat("-------------------------------------------------------", 
+   "\n", sep = " ")
+      
       print(results)
-      cat(line, sep = "")
+      cat("-------------------------------------------------------", 
+          "\n\n", sep = " ")
     }
+    
+    
     if (plot) {
       par(mfrow = c(2, 2))
       hist(data, xlab = dname, prob = TRUE, main = paste("Histogram of", dname))
@@ -109,3 +103,4 @@ boxcoxmeta<-function(data,
   }
   
 }
+

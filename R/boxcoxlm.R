@@ -1,20 +1,11 @@
-boxcoxlm <-function(x, y, method="lse", lambda = seq(-3,3,0.01), lambda2 = NULL, plot = TRUE, alpha = 0.05, verbose = TRUE)
+boxcoxlm <-
+  function(x, y, method="lse", lambda = seq(-3,3,0.01), lambda2 = NULL, plot = TRUE, alpha = 0.05, verbose = TRUE)
   {
     
     dname1<-deparse(substitute(y))
     dname2<-deparse(substitute(x))
-    if(typeof(y)=="list"){
-      dname1 <-colnames(as.data.frame(y))
-      
-    }
-    if(typeof(x)=="list"){
-      dname2 <-colnames(as.data.frame(x))
-      
-    }else{
-      dname2 <-deparse(substitute(x))
-    }
-    x<-data.matrix(x)
-    y<-as.numeric(data.matrix(y))
+    
+    y<-as.numeric(y)
     
     
     if(is.null(lambda2)) lambda2<-0
@@ -266,16 +257,15 @@ method.name<-"Estimating Box-Cox transformation parameter via maximum likelihood
     
     if (verbose){
       cat("\n"," Box-Cox power transformation", "\n", sep = " ")
-      cat("-----------------------------------------------------------", "\n", sep = " ")
-      cat("  data :", "Residuals", "\n\n", sep = " ")
+      cat("--------------------------------------------------------------", "\n\n", sep = " ")
       cat("  lambda.hat :", pred.lamb, "\n\n", sep = " ")
       cat("\n", "  ",nortest.name," (alpha = ",alpha,")", "\n", sep = "")
-      cat("----------------------------------------------------", "\n\n", sep = " ")
+      cat("--------------------------------------------------------------", "\n\n", sep = " ")
       cat("  statistic  :", statistic, "\n", sep = " ")
       cat("  p.value    :", pvalue, "\n\n", sep = " ")
       cat(if(pvalue > alpha){"  Result     : Residuals are normal after transformation."}
           else {"  Result     : Residuals are not normal after transformation."},"\n")
-      cat("-----------------------------------------------------------", "\n\n", sep = " ")
+      cat("--------------------------------------------------------------", "\n\n", sep = " ")
     }
     
     out<-list()
@@ -293,4 +283,4 @@ method.name<-"Estimating Box-Cox transformation parameter via maximum likelihood
     invisible(out)
     
     
-}
+  }
