@@ -1,10 +1,10 @@
-675094adfe7e49e386c85da658c7aede *DESCRIPTION
+4956c8034f39585e6df4ec40d8d74882 *DESCRIPTION
 9a5d28ba3d1ca04f7ea953472a8d852a *NAMESPACE
 8b3950c82fdf4db800137837adc23547 *R/boxcoxfr.R
 f0ca0822878003080b43b10f5d3c37dd *R/boxcoxlm.R
 3b1db39a54a85bfd0b1e49bd59f432f0 *R/boxcoxmeta.R
 c43e2fcb7cf1f2d47623af2cca161c60 *R/boxcoxnc.R
-fead5b9bc2e9229c0863cac33cb36bbd *R/confInt.R
+cf20dfb1c959c24c4bf54db80dcb706e *R/confInt.R
 c0cd3f2859bf61db755d3fc1743cdbd7 *R/confInt.boxcoxfr.R
 725d82d6b41125a681f8e6b147120845 *R/confInt.boxcoxmeta.R
 69d1761f9d5afa1132d15aa3825a9040 *data/AADT.rda
@@ -15,7 +15,7 @@ bb7811d33ea1f9486ecbf09ef728d5b8 *man/AADT.Rd
 b3d58a5e0744ff35a79e5d1b71a5af8a *man/AID.Rd
 06ecc1c32a6e2a6a55414cbfee9f4bb0 *man/boxcoxfr.Rd
 bd3cef62d838e0faed04ba2645144e17 *man/boxcoxlm.Rd
-b0f030848fd9553ec887958a4c2b7443 *man/boxcoxmeta.Rd
+7efe5296df6ad58d1f3a5181acbfcb01 *man/boxcoxmeta.Rd
 ac1d9479e14e47ed01f8f59d1af97b60 *man/boxcoxnc.Rd
 5e9a9a7a87db88fc0bea7f076f8fd061 *man/confInt.boxcoxfr.Rd
 4e0a2ad757f31c7d3edffb38ca8a551c *man/confInt.boxcoxmeta.Rd

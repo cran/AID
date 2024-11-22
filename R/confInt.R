@@ -24,7 +24,7 @@ if (x$lambda.hat == 0) vecbt <- exp(vectf)
 vecbt<- vecbt-x$lambda2
 vecbt<- matrix(vecbt,1,3)
 colnames(vecbt)<-c("Mean", paste((1-level)/2*100, "%",sep = ""), paste((1-(1-level)/2)*100, "%",sep = ""))
-rownames(vecbt)<-x$var.name
+rownames(vecbt)<-"data"
 
      if (verbose){
         cat("\n"," Back transformed data", "\n", sep = " ")
