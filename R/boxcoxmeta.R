@@ -75,17 +75,17 @@ boxcoxmeta<-function(data,
     
     if (plot) {
       par(mfrow = c(2, 2))
-      hist(data, xlab = dname, prob = TRUE, main = paste("Histogram of", dname))
+      hist(data, xlab = "Data", prob = TRUE, main = paste("Histogram of data"))
       lines(density(data))
       
-      hist(data.transformed, xlab = paste("Transformed", dname), 
-           prob = TRUE, main = paste("Histogram of tf", dname))
+      hist(data.transformed, xlab = paste("Transformed data"), 
+           prob = TRUE, main = paste("Histogram of tf data"))
       lines(density(data.transformed))
       
-      qqnorm(data, main = paste("Q-Q plot of", dname))
+      qqnorm(data, main = paste("Q-Q plot of data"))
       qqline(data)
       
-      qqnorm(data.transformed, main = paste("Q-Q plot of tf", dname))
+      qqnorm(data.transformed, main = paste("Q-Q plot of tf data"))
       qqline(data.transformed)
     }
     out <- list()

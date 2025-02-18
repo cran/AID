@@ -1,9 +1,9 @@
-4956c8034f39585e6df4ec40d8d74882 *DESCRIPTION
+8558b8c7a8155e1788f8e67aa06aef08 *DESCRIPTION
 9a5d28ba3d1ca04f7ea953472a8d852a *NAMESPACE
 8b3950c82fdf4db800137837adc23547 *R/boxcoxfr.R
 f0ca0822878003080b43b10f5d3c37dd *R/boxcoxlm.R
-3b1db39a54a85bfd0b1e49bd59f432f0 *R/boxcoxmeta.R
-c43e2fcb7cf1f2d47623af2cca161c60 *R/boxcoxnc.R
+c5793a28c80a45bcacdb32cee67277c7 *R/boxcoxmeta.R
+7430185d9a999d02581573c60ead3803 *R/boxcoxnc.R
 cf20dfb1c959c24c4bf54db80dcb706e *R/confInt.R
 c0cd3f2859bf61db755d3fc1743cdbd7 *R/confInt.boxcoxfr.R
 725d82d6b41125a681f8e6b147120845 *R/confInt.boxcoxmeta.R
